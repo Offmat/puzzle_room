@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116185227) do
+ActiveRecord::Schema.define(version: 20180116202143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20180116185227) do
     t.index ["country_id"], name: "index_inventors_on_country_id"
   end
 
+  create_table "makes", force: :cascade do |t|
+    t.bigint "puzzle_id", null: false
+    t.bigint "material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["material_id"], name: "index_makes_on_material_id"
+    t.index ["puzzle_id"], name: "index_makes_on_puzzle_id"
+  end
+
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -55,19 +64,18 @@ ActiveRecord::Schema.define(version: 20180116185227) do
     t.integer "level", limit: 2
     t.integer "design_year", limit: 2
     t.bigint "company_id"
-    t.bigint "material_id", null: false
     t.bigint "inventor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_puzzles_on_company_id"
     t.index ["inventor_id"], name: "index_puzzles_on_inventor_id"
-    t.index ["material_id"], name: "index_puzzles_on_material_id"
     t.index ["name"], name: "index_puzzles_on_name", unique: true
   end
 
   add_foreign_key "companies", "countries"
   add_foreign_key "inventors", "countries"
+  add_foreign_key "makes", "materials"
+  add_foreign_key "makes", "puzzles"
   add_foreign_key "puzzles", "companies"
   add_foreign_key "puzzles", "inventors"
-  add_foreign_key "puzzles", "materials"
 end
