@@ -1,4 +1,12 @@
 class PuzzlesController < ApplicationController
+  def index
+    @puzzles = Puzzle.all
+  end
+
+  def show
+    @puzzle = Puzzle.find(params[:id])
+  end
+
   def new
     @puzzle = Puzzle.new
     @producers = Company.all
@@ -7,6 +15,7 @@ class PuzzlesController < ApplicationController
   end
 
   def create
+    binding.pry
     @puzzle = Puzzle.new(puzzle_params)
     if @puzzle.save
       redirect_to @puzzle
@@ -15,13 +24,10 @@ class PuzzlesController < ApplicationController
     end
   end
 
-  def index
-    @puzzles = Puzzle.all
-  end
 
   private
 
   def puzzle_params
-    params.require(:puzzle).permit(:name, :description, :level, :company_id, :material_ids)
+    params.require(:puzzle).permit(:name, :description, :level, :company_id, :inventor_id, :design_year, :material_ids => [])
   end
 end

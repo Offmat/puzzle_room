@@ -2,7 +2,8 @@
 
 <% @puzzles.each do |puzzle| %>
   <p>
-    <h2><%= puzzle.name %></h2>
+    <h2 style = "display: inline"><%= puzzle.name %></h2>
+    <%= link_to "Show", puzzle %>
   </p>
 <% end %>
 

@@ -1,0 +1,34 @@
+<h1><%= @puzzle.name %></h1>
+
+<% if @puzzle.description %>
+  <p>
+    Description: <%= @puzzle.description %>
+  </p>
+<% end %>
+
+<p>
+  Difficulty level: <b><%= @puzzle.level %>/6</b>
+</p>
+
+<p>
+  Producer: <%= @puzzle.producer.name %>
+</p>
+
+<p>
+  <% if @puzzle.materials.any? %>
+    Materials: <%= @puzzle.materials.map(&:name).join(', ').titleize %>
+  <% end %>
+</p>
+<p>
+  <%= @puzzle.name %>
+  <% if @puzzle.inventor %>
+    was invented by <%= @puzzle.inventor.name %>
+    <% if @puzzle.design_year %>
+      in year <%= @puzzle.design_year %>
+    <% end %>
+  <% else %>
+    <% if @puzzle.design_year %>
+      was invented in year <%= @puzzle.design_year %>
+    <% end %>
+  <% end %>
+</p>

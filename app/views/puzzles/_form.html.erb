@@ -21,7 +21,10 @@
   </p>
   <p>
     <%= f.label :inventor %>
-    <%= f.collection_select(:inventor_id, @inventors, :id, :name) %>
+    <%= f.collection_select(:inventor_id, @inventors, :id, :name, include_blank: '--') %>
+  </p>
+  <p>
+    Invention year: <%= f.number_field :design_year, in: 0..Date.today.year %>
   </p>
   <p>
     <%= f.submit %>
