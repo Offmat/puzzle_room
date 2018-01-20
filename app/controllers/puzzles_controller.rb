@@ -1,11 +1,12 @@
 class PuzzlesController < ApplicationController
   before_action :pre_form, only: [:new, :edit]
+  before_action :find_puzzle, only: [:show, :edit, :update, :destroy]
+
   def index
     @puzzles = Puzzle.all
   end
 
   def show
-    @puzzle = Puzzle.find(params[:id])
   end
 
   def new
@@ -22,11 +23,9 @@ class PuzzlesController < ApplicationController
   end
 
   def edit
-    @puzzle = Puzzle.find(params[:id])
   end
 
   def update
-    @puzzle = Puzzle.find(params[:id])
     if @puzzle.update(puzzle_params)
       redirect_to @puzzle
     else
@@ -35,7 +34,6 @@ class PuzzlesController < ApplicationController
   end
 
   def destroy
-    @puzzle = Puzzle.find(params[:id])
     @puzzle.destroy
     redirect_to puzzles_path
   end
@@ -50,5 +48,9 @@ class PuzzlesController < ApplicationController
     @producers = Company.all
     @materials = Material.all
     @inventors = Inventor.all
+  end
+
+  def find_puzzle
+    @puzzle = Puzzle.find(params[:id])
   end
 end
