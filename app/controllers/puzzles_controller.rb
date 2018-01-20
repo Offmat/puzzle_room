@@ -1,4 +1,5 @@
 class PuzzlesController < ApplicationController
+  before_action :pre_form, only: [:new, :edit]
   def index
     @puzzles = Puzzle.all
   end
@@ -9,13 +10,9 @@ class PuzzlesController < ApplicationController
 
   def new
     @puzzle = Puzzle.new
-    @producers = Company.all
-    @materials = Material.all
-    @inventors = Inventor.all
   end
 
   def create
-    binding.pry
     @puzzle = Puzzle.new(puzzle_params)
     if @puzzle.save
       redirect_to @puzzle
@@ -24,10 +21,28 @@ class PuzzlesController < ApplicationController
     end
   end
 
+  def edit
+    @puzzle = Puzzle.find(params[:id])
+  end
+
+  def update
+    @puzzle = Puzzle.find(params[:id])
+    if @puzzle.update(puzzle_params)
+      redirect_to @puzzle
+    else
+      render 'edit'
+    end
+  end
 
   private
 
   def puzzle_params
     params.require(:puzzle).permit(:name, :description, :level, :company_id, :inventor_id, :design_year, :material_ids => [])
+  end
+
+  def pre_form
+    @producers = Company.all
+    @materials = Material.all
+    @inventors = Inventor.all
   end
 end
