@@ -20,15 +20,14 @@
   <% end %>
 </p>
 <p>
-  <%= @puzzle.name %>
   <% if @puzzle.inventor %>
-    was invented by <%= @puzzle.inventor.name %>
+    <%= @puzzle.name %> was invented by <%= @puzzle.inventor.name %>
     <% if @puzzle.design_year %>
-      in year <%= @puzzle.design_year %>
+      in the year <%= @puzzle.design_year %>
     <% end %>
   <% else %>
     <% if @puzzle.design_year %>
-      was invented in year <%= @puzzle.design_year %>
+      <%= @puzzle.name %> was invented in the year <%= @puzzle.design_year %>
     <% end %>
   <% end %>
 </p>
