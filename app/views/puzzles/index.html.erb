@@ -2,6 +2,8 @@
 
 <% @puzzles.each do |puzzle| %>
   <p>
-    <%= puzzle.name %>
+    <h2><%= puzzle.name %></h2>
   </p>
 <% end %>
+
+<%= link_to "Add new puzzle", new_puzzle_path %>

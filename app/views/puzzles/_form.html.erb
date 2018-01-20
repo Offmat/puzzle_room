@@ -1,0 +1,29 @@
+<%= form_for @puzzle do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :level %>
+    <%= f.number_field :level, in: 0..6  %>
+  </p>
+  <p>
+    <%= f.label :producer %>
+    <%= f.collection_select(:company_id, @producers, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :materials %>
+    <%= f.collection_check_boxes(:material_ids, @materials, :id, :name) %>
+  </p>
+  <p>
+    <%= f.label :inventor %>
+    <%= f.collection_select(:inventor_id, @inventors, :id, :name) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
