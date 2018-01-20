@@ -1,15 +1,12 @@
 <h1>Puzzles List!</h1>
 
 <div class="list-group">
-  <div class="row">
-    <% @puzzles.each do |puzzle| %>
-      <div class="list-group-item col-md-1">Tu będzie <br> foto</div>
-      <div class="list-group-item col-md-11">
-          <h1 style="display: inline"><%= puzzle.name %></h1>
-          <p><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></p>
-      </div>
-    <% end %>
-  </div>
+  <% @puzzles.each do |puzzle| %>
+    <div class="list-group-item">
+      <h1 style="display: inline"><%= puzzle.name %></h1>
+      <p><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></p>
+    </div>
+  <% end %>
 </div>
 
 <%= link_to "Add new puzzle", new_puzzle_path, class: "btn btn-primary btn-xs" %>
