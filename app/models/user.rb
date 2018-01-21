@@ -6,6 +6,9 @@ class User < ApplicationRecord
   before_validation :set_nickname
   validates :nickname, presence: true, uniqueness: true
 
+  has_many :possesions, dependent: :destroy
+  has_many :puzzles, through: :possesions
+
 
   private
 

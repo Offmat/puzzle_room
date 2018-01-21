@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20180121175331) do
     t.index ["name"], name: "index_materials_on_name", unique: true
   end
 
+  create_table "possesions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "puzzle_id", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["puzzle_id"], name: "index_possesions_on_puzzle_id"
+    t.index ["user_id", "puzzle_id"], name: "index_possesions_on_user_id_and_puzzle_id", unique: true
+    t.index ["user_id"], name: "index_possesions_on_user_id"
+  end
+
   create_table "puzzles", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -98,6 +109,8 @@ ActiveRecord::Schema.define(version: 20180121175331) do
   add_foreign_key "inventors", "countries"
   add_foreign_key "makes", "materials"
   add_foreign_key "makes", "puzzles"
+  add_foreign_key "possesions", "puzzles"
+  add_foreign_key "possesions", "users"
   add_foreign_key "puzzles", "companies"
   add_foreign_key "puzzles", "inventors"
 end
