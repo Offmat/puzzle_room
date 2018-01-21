@@ -10,6 +10,7 @@ class User < ApplicationRecord
   private
 
   def set_nickname
+    binding.pry
     self.nickname ||= full_name || email
   end
 

@@ -3,27 +3,29 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <%= f.label :email %>*
+    <%= f.email_field :email, class: "form-control", autofocus: true %>
 
-  <div class="field">
-    <%= f.label :password %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :surname %>
+    <%= f.text_field :surname, class: "form-control" %>
+
+    <%= f.label :nickname %><em> (Your post will be signed with this name) </em>
+    <%= f.text_field :nickname, class: "form-control", placeholder: "Full name or email will be used if left empty" %>
+
+    <%= f.label :password %>*
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+    <% end %>
+    <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <%= f.label :password_confirmation %>*
+    <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
+    <em>*Required fields</em>
 <% end %>
 
 <%= render "devise/shared/links" %>
