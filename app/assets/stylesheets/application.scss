@@ -20,13 +20,9 @@
  }
 
  .list-group-item {
-   background-color: lightgrey;
+   background-color: inherit;
    border-color: grey;
  }
-
-#puzzle_level {
-  width: calc(50% - 2px);
-}
 
 .list-group-item-frame {
   margin-top: -8px;
@@ -35,4 +31,9 @@
 .checkbox-inline {
   margin-left: 10px;
   margin-right: 5px;
+}
+
+.light-border {
+  border-style: solid;
+  border-color: grey;
 }
