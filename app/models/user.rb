@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true, uniqueness: true
 
   has_many :possesions, dependent: :destroy
-  has_many :puzzles, through: :possesions
+  has_many :possessed_puzzles, through: :possesions, source: :puzzle
 
 
   private

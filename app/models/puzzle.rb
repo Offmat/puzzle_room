@@ -6,5 +6,5 @@ class Puzzle < ApplicationRecord
   belongs_to :producer, foreign_key: 'company_id', class_name: 'Company'
 
   has_many :possesions, dependent: :destroy
-  has_many :users, through: :possesions
+  has_many :owners, through: :possesions, source: :user
 end
