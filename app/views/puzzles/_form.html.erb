@@ -1,34 +1,43 @@
 <%= form_for @puzzle do |f| %>
-  <div class="form-group">
     <p>
       <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control half-width-form-control" %>
+      <%= f.text_field :name, class: "form-control half-width-form-control", placeholder: "Obligatory field" %>
     </p>
     <p>
       <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control half-width-form-control" %>
+      <%= f.text_area :description, class: "form-control half-width-form-control", rows: "5" %>
     </p>
     <p>
       <%= f.label :level %>
-      <%= f.number_field :level, in: 0..6  %>
+      <%= f.range_field :level, in: 0..6 %>
     </p>
     <p>
-      <%= f.label :producer %>
-      <%= f.collection_select(:company_id, @producers, :id, :name) %>
+      <%= f.label :company_id, "Producer" %>
+      <%= f.collection_select(:company_id, @producers, :id, :name, {prompt: "Obligatory field"},
+         {class: "form-control half-width-form-control"})%>
     </p>
     <p>
       <%= f.label :materials %>
-      <%= f.collection_check_boxes(:material_ids, @materials, :id, :name) %>
+      <div class="list-group-item list-group-item-frame half-width-form-control">
+        <%= f.collection_check_boxes(:material_ids, @materials, :id, :name) do |c|%>
+          <label class="checkbox-inline">
+            <%= c.check_box %>
+            <%= c.label %>
+          </label>
+        <% end %>
+      </div>
     </p>
     <p>
       <%= f.label :inventor %>
-      <%= f.collection_select(:inventor_id, @inventors, :id, :name, include_blank: '--') %>
+      <%= f.collection_select(:inventor_id, @inventors, :id, :name, {include_blank: '--'},
+        {class: "form-control half-width-form-control"}) %>
     </p>
     <p>
-      Invention year: <%= f.number_field :design_year, in: 0..Date.today.year %>
+      <%= f.label :design_year, "Invented at" %>
+      <%= f.number_field :design_year, in: 0..Date.today.year, class: "form-control half-width-form-control" %>
     </p>
     <p>
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Back", puzzles_path, class: "btn btn-primary" %>
     </p>
-  </div>
 <% end %>
