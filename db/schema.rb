@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 20180121175331) do
     t.index ["name"], name: "index_puzzles_on_name", unique: true
   end
 
+  create_table "rates", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "puzzle_id", null: false
+    t.integer "rating", limit: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["puzzle_id"], name: "index_rates_on_puzzle_id"
+    t.index ["user_id", "puzzle_id"], name: "index_rates_on_user_id_and_puzzle_id", unique: true
+    t.index ["user_id"], name: "index_rates_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,4 +124,6 @@ ActiveRecord::Schema.define(version: 20180121175331) do
   add_foreign_key "possesions", "users"
   add_foreign_key "puzzles", "companies"
   add_foreign_key "puzzles", "inventors"
+  add_foreign_key "rates", "puzzles"
+  add_foreign_key "rates", "users"
 end

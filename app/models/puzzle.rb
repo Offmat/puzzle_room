@@ -7,4 +7,8 @@ class Puzzle < ApplicationRecord
 
   has_many :possesions, dependent: :destroy
   has_many :owners, through: :possesions, source: :user
+
+  has_many :rates, dependent: :destroy
+  has_many :users, through: :rates
+
 end

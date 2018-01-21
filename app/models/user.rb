@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :possesions, dependent: :destroy
   has_many :possessed_puzzles, through: :possesions, source: :puzzle
 
+  has_many :rates, dependent: :destroy
+  has_many :puzzles, through: :rates
 
   private
 
