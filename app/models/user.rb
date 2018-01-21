@@ -10,12 +10,11 @@ class User < ApplicationRecord
   private
 
   def set_nickname
-    binding.pry
-    self.nickname ||= full_name || email
+    self.nickname = full_name || email if nickname.empty?
   end
 
   def full_name
-    [name, surname].compact.join(" ") if name || surname
+    [name, surname].compact.join(' ') if name || surname
   end
 
 end
