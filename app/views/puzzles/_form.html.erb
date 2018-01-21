@@ -12,19 +12,20 @@
     <%= f.number_field :level, in: 0..6  %>
   </p>
   <p>
-    <%= f.label :producer %>
+    <%= f.label :company_id, "Producer" %>
     <%= f.collection_select(:company_id, @producers, :id, :name) %>
   </p>
   <p>
-    <%= f.label :materials %>
+    <%= f.label :materials_ids, "Materials" %>
     <%= f.collection_check_boxes(:material_ids, @materials, :id, :name) %>
   </p>
   <p>
-    <%= f.label :inventor %>
+    <%= f.label :inventor_id, "Inventor" %>
     <%= f.collection_select(:inventor_id, @inventors, :id, :name, include_blank: '--') %>
   </p>
   <p>
-    Invention year: <%= f.number_field :design_year, in: 0..Date.today.year %>
+    <%= f.label :design_year, "Invention year" %>
+    <%= f.number_field :design_year, in: 0..Date.today.year %>
   </p>
   <p>
     <%= f.submit %>
