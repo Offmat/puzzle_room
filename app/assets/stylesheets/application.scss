@@ -32,7 +32,11 @@
 
 .light-border {
   border-style: solid;
+  border-width: 1px;
   border-color: grey;
-  height: 645px;
+}
 
+.justify-content-md-center {
+  display: flex;
+  justify-content: center!important;
 }
