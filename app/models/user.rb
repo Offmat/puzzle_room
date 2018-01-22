@@ -12,6 +12,13 @@ class User < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :puzzles, through: :rates
 
+  has_many :comments
+  has_many :commented_puzzles, through: :comments, source: :commentable,
+           :source_type => 'Puzzle'
+
+  has_many :commented_comments, through: :comments, source: :commentable,
+           :source_type => 'Comment'
+
   private
 
   def set_nickname

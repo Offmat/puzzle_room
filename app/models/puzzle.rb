@@ -11,4 +11,7 @@ class Puzzle < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :users, through: :rates
 
+  has_many :comments, as: :commentable
+  has_many :commenters, through: :comments, source: :user
+
 end
