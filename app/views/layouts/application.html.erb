@@ -22,8 +22,9 @@
       </div>
     <% end %>
 
-    <div class="container">
-      <%= yield %>
-    </div>
+      <%= render 'common/navigation_bar' %>
+      <div class="container">
+        <%= yield %>
+      </div>
   </body>
 </html>

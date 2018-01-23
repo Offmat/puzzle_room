@@ -3,10 +3,10 @@
 <div class="list-group">
   <% @puzzles.each do |puzzle| %>
     <div class="list-group-item">
-      <h1 style="display: inline"><%= puzzle.name %></h1>
+      <h1 style="display: inline"><%= puzzle.name.capitalize %></h1>
       <p><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></p>
     </div>
   <% end %>
 </div>
 
-<%= link_to "Add new puzzle", new_puzzle_path, class: "btn btn-info btn-xs" %>
+<%= link_to "Add new puzzle", new_puzzle_path, class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>
