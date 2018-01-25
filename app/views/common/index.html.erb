@@ -2,7 +2,9 @@
 <div class="list-group">
   <% @model.each do |object| %>
     <div class="list-group-item">
-      <h1 style="display: inline"><%= object.name.capitalize %></h1>
+      <h1 style="display: inline"><%= object.name.capitalize %>
+        <%= object.surname&.capitalize if object.class == Inventor %>
+      </h1>
       <p><%= link_to "Show", object, class: "btn btn-primary btn-xs"%></p>
     </div>
   <% end %>
