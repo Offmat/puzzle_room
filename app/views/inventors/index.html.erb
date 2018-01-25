@@ -1,0 +1,12 @@
+<h1 class="text-center">Companies List!</h1>
+
+<div class="list-group">
+  <% @inventors.each do |inventor| %>
+    <div class="list-group-item">
+      <h1 style="display: inline"><%= inventor.name.capitalize %></h1>
+      <p><%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>
