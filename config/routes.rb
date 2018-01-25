@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   resources :puzzles
   resources :users, only: [:index, :show]
+  resources :companies
 end
