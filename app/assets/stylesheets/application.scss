@@ -16,6 +16,12 @@
  @import "bootstrap";
  @import "topnav";
 
+ .alert.alert-info {
+   background-color: #224f77;
+   border: none;
+   color: white;
+   border-radius: 0;
+ }
 
  .list-group-item {
    background-color: inherit;

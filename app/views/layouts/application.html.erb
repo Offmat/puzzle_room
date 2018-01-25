@@ -10,6 +10,8 @@
 
   <body style="background: lightgrey">
 
+    <%= render 'common/navigation_bar' %>
+
     <% if notice %>
       <div class="alert alert-info">
         <%= notice %>
@@ -22,7 +24,6 @@
       </div>
     <% end %>
 
-      <%= render 'common/navigation_bar' %>
       <div class="container">
         <%= yield %>
       </div>
