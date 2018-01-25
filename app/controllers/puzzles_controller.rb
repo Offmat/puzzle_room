@@ -3,7 +3,8 @@ class PuzzlesController < ApplicationController
   before_action :find_puzzle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @puzzles = Puzzle.all
+    @model = Puzzle.all
+    render 'common/index'
   end
 
   def show

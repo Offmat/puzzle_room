@@ -1,0 +1,11 @@
+<h1 class="text-center"><%= @model.table.name.capitalize %> List!</h1>
+<div class="list-group">
+  <% @model.each do |object| %>
+    <div class="list-group-item">
+      <h1 style="display: inline"><%= object.name.capitalize %></h1>
+      <p><%= link_to "Show", object, class: "btn btn-primary btn-xs"%></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Add new #{@model.table.name.singularize}", "/#{@model.table.name}/new", class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>

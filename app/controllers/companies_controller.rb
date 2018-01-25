@@ -3,7 +3,8 @@ class CompaniesController < ApplicationController
   before_action :pre_form, only: [:new, :edit]
 
   def index
-    @companies = Company.all
+    @model = Company.all
+    render 'common/index'
   end
 
   def new

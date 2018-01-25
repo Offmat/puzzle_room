@@ -3,7 +3,8 @@ class InventorsController < ApplicationController
   before_action :pre_form, only: [:new, :edit]
 
   def index
-    @inventors = Inventor.all
+    @model = Inventor.all
+    render 'common/index'
   end
 
   def new
