@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :companies
   resources :inventors
   resources :materials
+  resources :countries
 end

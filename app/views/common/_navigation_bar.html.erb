@@ -5,6 +5,7 @@
     <%= link_to "Companies", companies_path, class: page_is_active(companies_path)%>
     <%= link_to "Inventors", inventors_path, class: page_is_active(inventors_path)%>
     <%= link_to "Materials", materials_path, class: page_is_active(materials_path)%>
+    <%= link_to "Countries", countries_path, class: page_is_active(countries_path)%>
     <div style="float: right">
       <% if current_user %>
         <%= link_to "Sign_out", destroy_user_session_path, method: :delete %>
