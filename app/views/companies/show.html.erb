@@ -1,0 +1,22 @@
+<h1>
+  <%= @company.name %>
+</h1>
+
+<% if @company.description %>
+  <p>
+    Description: <%= @company.description %>
+  </p>
+<% end %>
+
+<% if @company.country %>
+  <p>
+    Country: <%= @company.country.name %>
+  </p>
+<% end %>
+
+
+<%= link_to "Edit", edit_company_path(@company), class: "btn btn-primary btn-xs" %>
+<%= link_to "Delete", @company, method: :delete,
+  data: { confirm: "Are you sure you want do delete #{@company.name}?" },
+  class: "btn btn-danger btn-xs"%>
+<%= link_to "Back", companies_path, class: "btn btn-primary btn-xs" %>
