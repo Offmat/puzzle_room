@@ -1,0 +1,29 @@
+<%= form_for @inventor do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Obligatory field" %>
+  </p>
+
+  <p>
+    <%= f.label :surname %>
+    <%= f.text_field :surname, class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control", rows: "5" %>
+  </p>
+
+  <p>
+    <%= f.label :country %>
+    <%= f.collection_select(:country_id, @countries, :id, :name, {include_blank: '--'}) %>
+  </p>
+
+  <p>
+    <%= f.label :century %>
+    <%= f.number_field :century, in: -20..21 %>
+  </p>
+
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to "Back", inventors_path, class: "btn btn-primary" %>
+<% end %>

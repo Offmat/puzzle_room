@@ -35,7 +35,7 @@
       </p>
       <p>
         <%= f.label :design_year, "Invented at" %>
-        <%= f.number_field :design_year, in: 0..Date.today.year, class: "form-control" %>
+        <%= f.number_field :design_year, in: -2000..Date.today.year, class: "form-control" %>
       </p>
       <p>
         <%= f.submit class: "btn btn-primary" %>

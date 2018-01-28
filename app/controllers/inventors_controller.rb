@@ -1,16 +1,32 @@
 class InventorsController < ApplicationController
   before_action :find_inventor, only: [:show, :edit, :update, :destroy]
-  before_action :pre_form, only: [:new, :edit]
+  before_action :pre_form, only: [:new, :edit, :create]
 
   def index
     @model = Inventor.all
     render 'common/index'
   end
 
+  def show
+  end
+
   def new
+    @inventor = Inventor.new
   end
 
   def create
+    @inventor = Inventor.new(inventor_params)
+    if @inventor.save
+      redirect_to inventors_path
+    else
+      render 'new'
+    end
+  end
+
+  def destroy
+    @inventor = Inventor.find(params[:id])
+    @inventor.destroy
+    redirect_to inventors_path
   end
 
   private

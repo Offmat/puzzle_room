@@ -1,0 +1,26 @@
+<h1>
+  <%= @inventor.full_name %>
+  <% if @inventor.century %>
+    <b style="font-size: 70%">|<%= @inventor.century %>century| </b>
+  <% end %>
+</h1>
+
+<% if @inventor.description %>
+  <p>
+    Description: <%= @inventor.description %>
+  </p>
+<% end %>
+
+<% if @inventor.country %>
+  <p>
+    Country: <%= @inventor.country.name %>
+  </p>
+<% end %>
+
+
+
+<%= link_to "Edit", edit_inventor_path(@inventor), class: "btn btn-primary btn-xs" %>
+<%= link_to "Delete", @inventor, method: :delete,
+  data: { confirm: "Are you sure you want do delete #{@inventor.full_name}?" },
+  class: "btn btn-danger btn-xs"%>
+<%= link_to "Back", inventors_path, class: "btn btn-primary btn-xs" %>
