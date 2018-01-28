@@ -16,7 +16,7 @@
 
   <p>
     <%= f.label :country %>
-    <%= f.collection_select(:country_id, @countries, :id, :name, {include_blank: '--'}) %>
+    <%= f.collection_select(:country_id, @countries, :id, :name, {include_blank: '--'}, { class: 'chosen-select' }) %>
   </p>
 
   <p>

@@ -14,3 +14,9 @@
 //= require_tree .
 //= require jquery
 //= require bootstrap-sprockets
+//= require chosen-jquery
+
+
+$(function(){
+    $(".chosen-select").chosen();
+});
