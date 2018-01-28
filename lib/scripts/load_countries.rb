@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 file = File.expand_path("../csv_files/country_list.csv", __dir__)
 
