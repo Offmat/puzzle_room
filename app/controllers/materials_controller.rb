@@ -1,6 +1,6 @@
 class MaterialsController < ApplicationController
   def index
-    @materials = Material.all
+    @materials = Material.all.order(:name)
     @material = Material.new
   end
 

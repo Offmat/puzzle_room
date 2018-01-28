@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.all
+    @countries = Country.all.order(:name)
     @country = Country.new
   end
 
