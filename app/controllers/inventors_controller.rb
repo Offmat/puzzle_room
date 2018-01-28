@@ -23,6 +23,14 @@ class InventorsController < ApplicationController
     end
   end
 
+  def update
+    if @inventor.update(inventor_params)
+      redirect_to @inventor
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @inventor = Inventor.find(params[:id])
     @inventor.destroy
