@@ -1,0 +1,20 @@
+<h1 class="text-center">Materials List!</h1>
+
+<div class="list-group col-md-12 no-padding">
+  <% @materials.each do |material| %>
+  <div class="list-group-item col-md-4 no-radius">
+    <h3 style="display: inline"><%= material.name %></h3>
+    <%= link_to "Delete", material, method: :delete,
+    data: { confirm: "Do you really want to delete #{material.name}" },
+    class: "btn btn-danger btn-xs button-right"%>
+  </div>
+  <% end %>
+</div>
+
+
+<div>
+  <%= form_for @material do |f| %>
+    <%= f.text_field :name, placeholder: "Enter new material",class: "col-md-10" %>
+    <%= f.submit class: "col-md-2 btn-primary" %>
+  <% end %>
+</div>

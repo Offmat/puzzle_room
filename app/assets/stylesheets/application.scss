@@ -16,6 +16,17 @@
  @import "bootstrap";
  @import "topnav";
 
+ .no-padding {
+   padding: 0;
+ }
+
+ .inline {
+   display: inline;
+ }
+ .button-right {
+   float: right;
+ }
+
  .alert.alert-info {
    background-color: #224f77;
    border: none;
@@ -26,6 +37,12 @@
  .list-group-item {
    background-color: inherit;
    border-color: grey;
+   margin-right: -1px;
+ }
+
+
+ .list-group-item.no-radius {
+   border-radius: 0;
  }
 
 .list-group-item-frame {
