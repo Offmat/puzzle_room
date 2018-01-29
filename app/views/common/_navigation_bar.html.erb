@@ -8,9 +8,11 @@
     <%= link_to "Countries", countries_path, class: page_is_active(countries_path)%>
     <div style="float: right">
       <% if current_user %>
-        <%= link_to "Sign_out", destroy_user_session_path, method: :delete %>
+        <span class="topnav-text">logged as: <%= current_user.nickname %></span>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to "Sing_in", user_session_path %>
+        <%= link_to "Log in", user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
       <% end %>
     </div>
   </div>
