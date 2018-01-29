@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :inventors
   resources :materials
   resources :countries
+  resources :rates, only: [:create]
 end

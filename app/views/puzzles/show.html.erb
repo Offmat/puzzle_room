@@ -31,8 +31,17 @@
     <% end %>
   <% end %>
 </p>
-<%= link_to "Edit", edit_puzzle_path(@puzzle), class: "btn btn-primary btn-xs" %>
-<%= link_to "Delete", @puzzle, method: :delete,
-  data: { confirm: "Are you sure you want do delete #{@puzzle.name} puzzle?" },
-  class: "btn btn-danger btn-xs"%>
-<%= link_to "Back", puzzles_path, class: "btn btn-primary btn-xs" %>
+<p>
+  <%= link_to "Edit", edit_puzzle_path(@puzzle), class: "btn btn-primary btn-xs" %>
+  <%= link_to "Delete", @puzzle, method: :delete,
+    data: { confirm: "Are you sure you want do delete #{@puzzle.name} puzzle?" },
+    class: "btn btn-danger btn-xs"%>
+  <%= link_to "Back", puzzles_path, class: "btn btn-primary btn-xs" %>
+</p>
+<div>
+  <% if @puzzle.rates.exists?(user: current_user) %>
+    You rated this puzzle for <%= @puzzle.rates.find_by(user: current_user).rating %>/10
+  <% else %>
+    <%= render 'rates/form' %>
+  <% end %>
+</div>

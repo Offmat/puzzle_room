@@ -1,4 +1,4 @@
-class Possesion < ApplicationRecord
+class Rate < ApplicationRecord
   validates :rating, presence: true
 
   belongs_to :user

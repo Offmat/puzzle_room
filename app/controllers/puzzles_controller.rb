@@ -15,6 +15,7 @@ class PuzzlesController < ApplicationController
   end
 
   def show
+    @rate = Rate.new
   end
 
   def new
