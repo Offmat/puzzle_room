@@ -38,10 +38,19 @@
     class: "btn btn-danger btn-xs"%>
   <%= link_to "Back", puzzles_path, class: "btn btn-primary btn-xs" %>
 </p>
-<div>
+
+<p>
   <% if @puzzle.rates.exists?(user: current_user) %>
     You rated this puzzle for <%= @puzzle.rates.find_by(user: current_user).rating %>/10
   <% else %>
     <%= render 'rates/form' %>
   <% end %>
-</div>
+</p>
+<h3>Comments</h3>
+<p>
+  <%= render 'comments/list', model: @puzzle  %>
+</p>
+
+<p>
+  <%= render 'comments/form', model: @puzzle %>
+</p>

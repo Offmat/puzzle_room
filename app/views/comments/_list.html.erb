@@ -1,0 +1,5 @@
+<% model.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+    <%= render 'comments/list', model: comment if comment.comments.any? %>
+    <%= render 'comments/form', model: comment %>
+<% end %>

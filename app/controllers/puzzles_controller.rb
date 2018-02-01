@@ -16,6 +16,7 @@ class PuzzlesController < ApplicationController
 
   def show
     @rate = Rate.new
+    @comment = Comment.new
   end
 
   def new

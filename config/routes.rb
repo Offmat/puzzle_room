@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :materials
   resources :countries
   resources :rates, only: [:create]
+  resources :comments, only: [:create]
 end
