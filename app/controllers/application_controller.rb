@@ -13,11 +13,10 @@ class ApplicationController < ActionController::Base
 
   def find_lua(object)
     if object.is_a?(Comment)
-      puzzle = find_lua(object.commentable)
+      find_lua(object.commentable)
     else
-      puzzle = object
+      object
     end
-    puzzle
   end
 
 end
