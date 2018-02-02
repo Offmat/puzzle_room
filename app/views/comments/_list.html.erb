@@ -1,5 +1,9 @@
 <% model.comments.each do |comment| %>
+<div style="margin-left: 15px">
+  <p><%= comment.user&.nickname || "Guest" %> | <%= comment.created_at %>
   <p><%= comment.body %></p>
     <%= render 'comments/list', model: comment if comment.comments.any? %>
     <%= render 'comments/form', model: comment %>
+</div>
+
 <% end %>
