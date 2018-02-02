@@ -1,4 +1,4 @@
-// show and hide comments
+// show and hide comment forms
 window.addEventListener( "load", function() {
   var buttons = document.querySelectorAll(".button-comment");
   for (var i = 0; i < buttons.length; i++) {
@@ -10,6 +10,24 @@ window.addEventListener( "load", function() {
       } else {
         form.removeAttribute("style");
         this.innerText = "Add comment"
+      };
+    });
+  };
+});
+
+
+// show and hide comments list
+window.addEventListener( "load", function() {
+  var buttons = document.querySelectorAll(".button-comments-list");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener( "click", function() {
+      var list = document.getElementById("comments-list-" + this.id.slice(21));
+      if (this.innerText == "...") {
+        list.setAttribute("style", "display: block");
+        this.innerText = "<<"
+      } else {
+        list.removeAttribute("style");
+        this.innerText = "..."
       };
     });
   };

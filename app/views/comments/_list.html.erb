@@ -8,7 +8,11 @@
     </div>
     <button class="button-comment" id="button-comment-<%= comment.id %>">Add comment</button>
   </div>
-  <%= render 'comments/list', model: comment if comment.comments.any? %>
+
+  <div class="comments-list-hidden comments-list" id="comments-list-<%= comment.id %>">
+    <%= render 'comments/list', model: comment if comment.comments.any? %>
+  </div>
+  <button class="button-comments-list" id="button-comments-list-<%= comment.id %>">...</button>
 </div>
 
 <% end %>
