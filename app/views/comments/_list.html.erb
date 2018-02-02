@@ -1,9 +1,14 @@
 <% model.comments.each do |comment| %>
 <div style="margin-left: 15px">
-  <p><%= comment.user&.nickname || "Guest" %> | <%= comment.created_at %>
-  <p><%= comment.body %></p>
-    <%= render 'comments/list', model: comment if comment.comments.any? %>
-    <%= render 'comments/form', model: comment %>
+  <div class="list-group-item">
+    <p><%= comment.user&.nickname || "Guest" %> | <%= comment.created_at %>
+    <p><%= comment.body %></p>
+    <div class="form-hidden form-comment" id="form-comment-<%= comment.id %>">
+      <%= render 'comments/form', model: comment %>
+    </div>
+    <button class="button-comment" id="button-comment-<%= comment.id %>">Add comment</button>
+  </div>
+  <%= render 'comments/list', model: comment if comment.comments.any? %>
 </div>
 
 <% end %>
