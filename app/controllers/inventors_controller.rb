@@ -1,6 +1,6 @@
 class InventorsController < ApplicationController
   before_action :find_inventor, only: [:show, :edit, :update, :destroy]
-  before_action :pre_form, only: [:new, :edit, :create]
+  before_action :fetch_countries, only: [:new, :edit]
 
   def index
     @model = Inventor.all
@@ -19,6 +19,7 @@ class InventorsController < ApplicationController
     if @inventor.save
       redirect_to inventors_path
     else
+      fetch_countries
       render 'new'
     end
   end
@@ -43,7 +44,7 @@ class InventorsController < ApplicationController
     params.require(:inventor).permit(:name, :surname, :century, :description, :country_id)
   end
 
-  def pre_form
+  def fetch_countries
     @countries = Country.all
   end
 

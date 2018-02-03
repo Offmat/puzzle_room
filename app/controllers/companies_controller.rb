@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :find_company, only: [:show, :edit, :update, :destroy]
-  before_action :pre_form, only: [:new, :edit, :create]
+  before_action :fetch_countries, only: [:new, :edit, :create]
 
   def index
     @model = Company.all
@@ -19,6 +19,7 @@ class CompaniesController < ApplicationController
     if @company.save
       redirect_to companies_path
     else
+      fetch_countries
       render 'new'
     end
   end
@@ -43,7 +44,7 @@ class CompaniesController < ApplicationController
     params.require(:company).permit(:name, :description, :country_id)
   end
 
-  def pre_form
+  def fetch_countries
     @countries = Country.all
   end
 
