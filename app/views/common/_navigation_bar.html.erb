@@ -8,8 +8,11 @@
     <%= link_to "Countries", countries_path, class: page_is_active("countries")%>
     <div style="float: right">
       <% if current_user %>
-        <span class="topnav-text">logged as: <%= current_user.nickname %></span>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <div class="dropdown_ml">
+          <span class="topnav-text">logged as: <%= current_user.nickname %></span>
+          <%= link_to "Edit account", edit_user_registration_path, class: "dropdown_ml-content" %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown_ml-content" %>
+        </div>
       <% else %>
         <%= link_to "Log in", user_session_path %>
         <%= link_to "Sign up", new_user_registration_path %>
