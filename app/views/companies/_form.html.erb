@@ -1,22 +1,24 @@
-<%= form_for @company do |f| %>
-  <p>
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control obligatory", placeholder: "Obligatory field" %>
-    <%= render 'common/errors', object: @company, field_name: :name %>
-  </p>
+<div class="col-md-6 light-border">
+  <%= form_for @company do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control obligatory", placeholder: "Obligatory field" %>
+      <%= render 'common/errors', object: @company, field_name: :name %>
+    </p>
 
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description, class: "form-control", rows: "5" %>
-  </p>
+    <p>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control", rows: "5" %>
+    </p>
 
-  <p>
-    <%= f.label :country %>
-    <%= f.collection_select(:country_id, @countries, :id, :name, {include_blank: '--'}, { class: 'chosen-select obligatory' }) %>
-    <%= render 'common/errors', object: @company, field_name: :country %>
-  </p>
-
-  <%= f.submit class: "btn btn-primary" %>
-  <%= link_to "Back", companies_path, class: "btn btn-primary" %>
-
-<% end %>
+    <p>
+      <%= f.label :country %>
+      <%= f.collection_select(:country_id, @countries, :id, :name, {include_blank: '--'}, { class: 'form-control chosen-select obligatory' }) %>
+      <%= render 'common/errors', object: @company, field_name: :country %>
+    </p>
+    <p>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Back", companies_path, class: "btn btn-primary" %>
+    </p>
+  <% end %>
+</dev>
