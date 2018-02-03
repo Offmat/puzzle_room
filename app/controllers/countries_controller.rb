@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.all.order(:name)
+    fetch_countries
     @country = Country.new
   end
 
@@ -9,6 +9,7 @@ class CountriesController < ApplicationController
     if @country.save
       redirect_to countries_path
     else
+      fetch_countries
       render 'index'
     end
   end
@@ -23,6 +24,10 @@ class CountriesController < ApplicationController
 
   def country_params
     params.require(:country).permit(:name)
+  end
+
+  def fetch_countries
+    @countries = Country.all.order(:name)
   end
 
 end

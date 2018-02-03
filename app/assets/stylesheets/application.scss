@@ -19,6 +19,18 @@
  @import "comments";
  @import "forms";
 
+ .chopped {
+   width: 85%;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ .chopped:hover {
+   text-overflow: inherit;
+   overflow: visible;
+   white-space: normal;
+ }
 
  .no-padding {
    padding: 0;
@@ -29,6 +41,7 @@
  }
  .button-right {
    float: right;
+   display: inline;
  }
 
  .alert.alert-info {
