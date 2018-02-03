@@ -1,0 +1,5 @@
+<div class="validation-alert">
+  <% errors_list(object, field_name).each do |message| %>
+    <%= field_name.to_s.capitalize + ' ' + message %>
+  <% end %>
+</div>
