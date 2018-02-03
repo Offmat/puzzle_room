@@ -22,6 +22,7 @@ class PuzzlesController < ApplicationController
     if @puzzle.save
       redirect_to @puzzle
     else
+      pre_form
       render 'new'
     end
   end

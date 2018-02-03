@@ -1,5 +1,6 @@
 class Puzzle < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :level, presence: true
   has_many :makes, dependent: :destroy
   has_many :materials, through: :makes
   belongs_to :inventor, optional: true

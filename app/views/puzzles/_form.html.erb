@@ -2,7 +2,8 @@
   <%= form_for @puzzle do |f| %>
       <p>
         <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control", placeholder: "Obligatory field" %>
+        <%= f.text_field :name, class: "form-control obligatory", placeholder: "Obligatory field" %>
+        <%= render 'common/errors', object: @puzzle, field_name: :name %>
       </p>
       <p>
         <%= f.label :description %>
@@ -10,12 +11,13 @@
       </p>
       <p>
         <%= f.label :level %>
-        <%= f.range_field :level, in: 0..6 %>
+        <%= f.range_field :level, value:  nil,  in: 0..6 %>
       </p>
       <p>
         <%= f.label :company_id, "Producer" %>
         <%= f.collection_select(:company_id, @producers, :id, :name, {prompt: "Obligatory field"},
-           {class: "form-control "})%>
+           {class: "form-control obligatory"})%>
+        <%= render 'common/errors', object: @puzzle, field_name: :producer %>
       </p>
       <p>
         <%= f.label :materials %>
