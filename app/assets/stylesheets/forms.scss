@@ -2,7 +2,16 @@
   border-color: red;
 }
 
+.field_with_errors {
+  display: inline;
+}
+
 .validation-alert {
   color: red;
   font-style: italic;
+}
+
+#puzzle_level-value {
+  margin-left: 20px;
+  font-weight: bold;
 }
