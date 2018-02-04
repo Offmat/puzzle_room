@@ -6,7 +6,7 @@
     <h3 style="display: inline">
       <% link_label = material.name %>
       <% link_label += " (" + material.puzzles.count.to_s + ")" if material.puzzles.any?%>
-      <%= link_to link_label, puzzles_path(q: {material_id: material.id}), style: "color: black" %>
+      <%= link_to link_label, puzzles_path(q: {material_id: material.id}), class: "text-link" %>
     </h3>
     <%= link_to "Delete", material, method: :delete,
     data: { confirm: "Do you really want to delete #{material.name}" },

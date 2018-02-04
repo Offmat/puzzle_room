@@ -6,7 +6,7 @@
       <p>
         <% link_label =  inventor.puzzles.count.to_s + "puzzles in database" %>
         <%= inventor.country&.name %> |
-        <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), style: "color: black" %>
+        <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), class: "text-link" %>
       </p>
       <p><%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%></p>
     </div>

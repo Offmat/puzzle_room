@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  Producer: <%= @puzzle.producer.name %>
+  Producer: <%= link_to @puzzle.producer.name, @puzzle.producer, class: "text-link" %>
 </p>
 
 <p>
@@ -21,7 +21,8 @@
 </p>
 <p>
   <% if @puzzle.inventor %>
-    <%= @puzzle.name %> was invented by <%= @puzzle.inventor.name %>
+    <%= @puzzle.name %> was invented by
+    <%= link_to @puzzle.inventor.full_name, @puzzle.inventor, class: "text-link" %>
     <% if @puzzle.design_year %>
       in the year <%= @puzzle.design_year %>
     <% end %>

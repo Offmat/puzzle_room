@@ -18,7 +18,7 @@ class PuzzlesController < ApplicationController
   end
 
   def new
-    @puzzle = Puzzle.new
+    @puzzle = Puzzle.new(level: 0)
   end
 
   def create
@@ -38,6 +38,7 @@ class PuzzlesController < ApplicationController
     if @puzzle.update(puzzle_params)
       redirect_to @puzzle
     else
+      pre_form
       render 'edit'
     end
   end

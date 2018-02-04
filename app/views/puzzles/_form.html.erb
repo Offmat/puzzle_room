@@ -10,8 +10,8 @@
         <%= f.text_area :description, class: "form-control", rows: "5" %>
       </p>
       <p>
-        <%= f.label :level %><span class="btn btn-xs btn-default" id="puzzle_level-value">0</span>
-        <%= f.range_field :level, value:  0,  in: 0..6 %>
+        <%= f.label :level %><span class="btn btn-xs btn-default" id="puzzle_level-value"> <%= @puzzle.level %> </span>
+        <%= f.range_field :level, in: 0..6 %>
         <%= render 'common/errors', object: @puzzle, field_name: :level %>
       </p>
       <p>

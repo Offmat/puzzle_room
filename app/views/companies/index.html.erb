@@ -6,7 +6,7 @@
       <p>
         <% link_label =  company.puzzles.count.to_s + "puzzles in database" %>
         <%= company.country.name %> |
-        <%= link_to link_label, puzzles_path(q: {company_id: company.id}), style: "color: black" %>
+        <%= link_to link_label, puzzles_path(q: {company_id: company.id}), class: "text-link" %>
       </p>
       <p><%= link_to "Show", company, class: "btn btn-primary btn-xs"%></p>
     </div>
