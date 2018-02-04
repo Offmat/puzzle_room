@@ -10,6 +10,7 @@ class PuzzlesController < ApplicationController
     @puzzles = @puzzles.joins(:materials).where(materials: {id: material_id}) if material_id
     @puzzles = @puzzles.joins(:producer).where(companies: {id: company_id}) if company_id
     @puzzles = @puzzles.joins(:inventor).where(inventors: {id: inventor_id}) if inventor_id
+    @pre_set = {puzzle: params.require(:q).permit!} if params[:q]
   end
 
   def show
@@ -18,7 +19,7 @@ class PuzzlesController < ApplicationController
   end
 
   def new
-    @puzzle = Puzzle.new(level: 0)
+    @puzzle = Puzzle.new(puzzle_params.merge(level: 0))
   end
 
   def create
