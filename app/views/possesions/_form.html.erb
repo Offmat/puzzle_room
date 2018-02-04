@@ -1,0 +1,10 @@
+<%= form_for @possesion do |f| %>
+  <%= f.hidden_field :puzzle_id, value: @puzzle.id %>
+  <p>
+    <%= f.label :status %><br>
+    <%= f.collection_radio_buttons(:status, ["Owned", "To buy", "Reset"], :itself, :itself) do |b| %>
+      <%= b.label(class: "radio-inline") {b.radio_button + b.text} %>
+    <% end %>
+  </p>
+  <%= f.submit %>
+<% end %>

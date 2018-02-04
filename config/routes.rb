@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :countries
   resources :rates, only: [:create]
   resources :comments, only: [:create]
+  resources :possesions, only: [:create, :update]
 end
