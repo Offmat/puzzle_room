@@ -3,15 +3,9 @@ class PuzzlesController < ApplicationController
   before_action :find_puzzle, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:q].present?
-      if params[:q][:material_id].present?
-        @puzzles = Puzzle.all.order(:name).select do |puzzle|
-          puzzle.material_ids.include?(params[:q][:material_id].to_i)
-        end
-      end
-    else
-      @puzzles = Puzzle.all.order(:name)
-    end
+    @puzzles = Puzzle.all.order(:name)
+    material_id = params.dig(:q, :material_id)
+    @puzzles = @puzzles.joins(:materials).where(materials: {id: material_id}) if material_id
   end
 
   def show
