@@ -3,8 +3,7 @@ class InventorsController < ApplicationController
   before_action :fetch_countries, only: [:new, :edit]
 
   def index
-    @model = Inventor.all
-    render 'common/index'
+    @inventors = Inventor.all
   end
 
   def show

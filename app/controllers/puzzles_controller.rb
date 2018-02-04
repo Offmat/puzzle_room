@@ -6,8 +6,10 @@ class PuzzlesController < ApplicationController
     @puzzles = Puzzle.all.order(:name)
     material_id = params.dig(:q, :material_id)
     company_id = params.dig(:q, :company_id)
+    inventor_id = params.dig(:q, :inventor_id)
     @puzzles = @puzzles.joins(:materials).where(materials: {id: material_id}) if material_id
     @puzzles = @puzzles.joins(:producer).where(companies: {id: company_id}) if company_id
+    @puzzles = @puzzles.joins(:inventor).where(inventors: {id: inventor_id}) if inventor_id
   end
 
   def show

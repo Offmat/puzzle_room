@@ -3,8 +3,8 @@
   <% @companies.each do |company| %>
     <div class="list-group-item">
       <h1 style="display: inline"><%= company.name.capitalize %></h1>
-      <% link_label =  company.puzzles.count.to_s + "puzzles in database" %>
       <p>
+        <% link_label =  company.puzzles.count.to_s + "puzzles in database" %>
         <%= company.country.name %> |
         <%= link_to link_label, puzzles_path(q: {company_id: company.id}), style: "color: black" %>
       </p>

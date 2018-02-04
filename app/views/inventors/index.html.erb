@@ -1,0 +1,16 @@
+<h1 class="text-center">Inventors List!</h1>
+<div class="list-group">
+  <% @inventors.each do |inventor| %>
+    <div class="list-group-item">
+      <h1 style="display: inline"><%= inventor.full_name.capitalize %></h1>
+      <p>
+        <% link_label =  inventor.puzzles.count.to_s + "puzzles in database" %>
+        <%= inventor.country&.name %> |
+        <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), style: "color: black" %>
+      </p>
+      <p><%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>
