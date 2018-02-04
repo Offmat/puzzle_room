@@ -1,0 +1,16 @@
+<h1 class="text-center">Companies List!</h1>
+<div class="list-group">
+  <% @companies.each do |company| %>
+    <div class="list-group-item">
+      <h1 style="display: inline"><%= company.name.capitalize %></h1>
+      <% link_label =  company.puzzles.count.to_s + "puzzles in database" %>
+      <p>
+        <%= company.country.name %> |
+        <%= link_to link_label, puzzles_path(q: {company_id: company.id}), style: "color: black" %>
+      </p>
+      <p><%= link_to "Show", company, class: "btn btn-primary btn-xs"%></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Add new company", new_company_path, class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>

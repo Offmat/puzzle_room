@@ -3,8 +3,7 @@ class CompaniesController < ApplicationController
   before_action :fetch_countries, only: [:new, :edit, :create]
 
   def index
-    @model = Company.all
-    render 'common/index'
+    @companies = Company.all
   end
 
   def show
