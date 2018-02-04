@@ -1,7 +1,7 @@
 <% model.comments.each do |comment| %>
 <div style="margin-left: 15px">
   <div class="list-group-item">
-    <p><%= comment.user&.nickname || "Guest" %> | <%= comment.created_at %>
+    <p><%= comment.user&.nickname || "Guest" %> | <%= time_ago_in_words(comment.created_at) %> ago
     <p><%= comment.body %></p>
     <div class="form-hidden form-comment" id="form-comment-<%= comment.id %>">
       <%= render 'comments/form', model: comment %>
@@ -9,10 +9,13 @@
     <button class="button-comment" id="button-comment-<%= comment.id %>">Add comment</button>
   </div>
 
-  <div class="comments-list-hidden comments-list" id="comments-list-<%= comment.id %>">
-    <%= render 'comments/list', model: comment if comment.comments.any? %>
-  </div>
-  <button class="button-comments-list" id="button-comments-list-<%= comment.id %>">...</button>
+  <% if comment.comments.any? %>
+    <div class="comments-list-hidden comments-list" id="comments-list-<%= comment.id %>">
+      <%= render 'comments/list', model: comment %>
+    </div>
+    <button class="button-comments-list" id="button-comments-list-<%= comment.id %>">...</button>
+  <% end %>
+
 </div>
 
 <% end %>

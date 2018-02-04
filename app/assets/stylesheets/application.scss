@@ -19,6 +19,10 @@
  @import "comments";
  @import "forms";
 
+ body > .container {
+   padding-bottom: 20px;
+ }
+
  .text-link {
    color: black;
  }
