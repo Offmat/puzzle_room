@@ -1,7 +1,10 @@
 class Puzzle < ApplicationRecord
+  mount_uploader :avatar, PuzzleAvatarUploader
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :level, presence: true, inclusion: { in: 1..6, message: "is not in range 1-6" }
   validates :producer, presence: {message: "need to be chosen"}
+
   has_many :makes, dependent: :destroy
   has_many :materials, through: :makes
   belongs_to :inventor, optional: true
