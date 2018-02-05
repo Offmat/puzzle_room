@@ -20,7 +20,7 @@ class PuzzlesController < ApplicationController
   end
 
   def new
-    @puzzle = Puzzle.new(puzzle_params.merge(level: 0))
+    @puzzle = Puzzle.new(level: 0)
   end
 
   def create
