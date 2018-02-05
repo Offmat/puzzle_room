@@ -15,7 +15,7 @@ class PuzzlesController < ApplicationController
 
   def show
     @possesion = Possesion.find_or_initialize_by(user: current_user, puzzle: @puzzle)
-    @rate = Rate.new
+    @rate = Rate.find_or_initialize_by(user: current_user, puzzle: @puzzle)
     @comment = Comment.new
   end
 

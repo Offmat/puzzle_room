@@ -1,6 +1,6 @@
 class PossesionsController < ApplicationController
   def create
-    @possesion = Possesion.find_or_initialize_by(possesion_params.merge(user: current_user))
+    @possesion = Possesion.find_or_initialize_by(permitted_attributes(Possesion).merge(user: current_user))
     if possesion_params[:status] == "Reset"
       redirect_to @possesion.puzzle, notice: "Nothing was deleted, the void getting vaster"
     elsif @possesion.save
@@ -11,8 +11,9 @@ class PossesionsController < ApplicationController
   end
 
   def update
-    @possesion = Possesion.find_by(user: current_user, puzzle_id: params[:possesion][:puzzle_id])
+    authorize @possesion = Possesion.find_by(puzzle_id: permitted_attributes(Possesion)[:puzzle_id], user: current_user)
     if possesion_params[:status] == "Reset"
+      authorize @possesion, :destroy?
       @possesion.delete
       redirect_to @possesion.puzzle, notice: "Possesion was deleted"
     elsif @possesion.update(possesion_params)

@@ -19,6 +19,7 @@
     Materials: <%= @puzzle.materials.map(&:name).join(', ').titleize %>
   <% end %>
 </p>
+
 <p>
   <% if @puzzle.inventor %>
     <%= @puzzle.name %> was invented by
@@ -32,6 +33,7 @@
     <% end %>
   <% end %>
 </p>
+
 <p>
   <%= link_to "Edit", edit_puzzle_path(@puzzle),
     class: "btn btn-primary btn-xs" if policy(@puzzle).update? %>
@@ -42,10 +44,12 @@
 </p>
 
 <p>
-  <% if @puzzle.rates.exists?(user: current_user) %>
-    You rated this puzzle for <%= @puzzle.rates.find_by(user: current_user).rating %>/10
-  <% else %>
+  <% if @rate.new_record?%>
     <%= render 'rates/form' %>
+  <% else %>
+    You rated this puzzle for <%= @rate.rating %>/10
+    <%= link_to "Delete rate", @rate, method: :delete,
+      class: "btn btn-danger btn-xs" if policy(@rate).destroy? %>
   <% end %>
 </p>
 

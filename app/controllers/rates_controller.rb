@@ -1,14 +1,17 @@
 class RatesController < ApplicationController
   def create
-    @puzzle = Puzzle.find(params[:rate][:puzzle_id])
-    @rate = Rate.new(puzzle: @puzzle, user: current_user, rating: rate_params[:rating])
-    @rate.save
-    redirect_to @puzzle
+    authorize Rate
+    @rate = Rate.new(permitted_attributes(Rate).merge(user: current_user))
+    if @rate.save
+      redirect_to @rate.puzzle, notice: "Rate added"
+    else
+      redirect_to @rate.puzzle, alert: "Error occured"
+    end
   end
 
-  private
-
-  def rate_params
-    params.require(:rate).permit(:rating)
+  def destroy
+    authorize @rate = Rate.find(params[:id])
+    @rate.destroy
+    redirect_to @rate.puzzle, notice: "Rate deleted"
   end
 end
