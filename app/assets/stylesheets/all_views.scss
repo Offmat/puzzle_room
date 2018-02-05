@@ -1,0 +1,96 @@
+body > .container {
+  padding-bottom: 20px;
+}
+
+.text-link {
+  color: black;
+}
+
+.chopped {
+  width: 85%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chopped:hover {
+  text-overflow: inherit;
+  overflow: visible;
+  white-space: normal;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.inline {
+  display: inline;
+
+}
+.button-right {
+  float: right;
+  display: inline;
+}
+
+.alert.alert-info {
+  background-color: #224f77;
+  border: none;
+  color: white;
+  border-radius: 0;
+}
+
+.list-group-item {
+  background-color: inherit;
+  border-color: grey;
+  margin-right: -1px;
+}
+
+
+.list-group-item.no-radius {
+  border-radius: 0;
+}
+
+.list-group-item-frame {
+ margin-top: -8px;
+}
+
+.checkbox-inline {
+ margin-left: 10px;
+ margin-right: 5px;
+}
+
+.light-border {
+ border-style: solid;
+ border-width: 1px;
+ border-color: grey;
+ padding: 13px;
+ margin: 20px 0;
+}
+
+.justify-content-md-center {
+ display: flex;
+ justify-content: center!important;
+}
+
+.description {
+  padding-bottom: 40px;
+}
+
+.bottom-right {
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+}
+
+.bottom-left {
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+}
+
+.number-input {
+  border-radius: 4px;
+  margin-right: 10px;
+}

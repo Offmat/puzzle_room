@@ -1,0 +1,17 @@
+div.ch_row {
+  display: table;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.ch_first {
+  float: none;
+  display: table-cell;
+  vertical-align: top;
+}
+
+div.ch_second {
+  float: none;
+  display: table-cell;
+  vertical-align: top;
+}
