@@ -33,10 +33,11 @@
   <% end %>
 </p>
 <p>
-  <%= link_to "Edit", edit_puzzle_path(@puzzle), class: "btn btn-primary btn-xs" %>
+  <%= link_to "Edit", edit_puzzle_path(@puzzle),
+    class: "btn btn-primary btn-xs" if policy(@puzzle).update? %>
   <%= link_to "Delete", @puzzle, method: :delete,
     data: { confirm: "Are you sure you want do delete #{@puzzle.name} puzzle?" },
-    class: "btn btn-danger btn-xs"%>
+    class: "btn btn-danger btn-xs" if policy(@puzzle).destroy? %>
   <%= link_to "Back", puzzles_path, class: "btn btn-primary btn-xs" %>
 </p>
 

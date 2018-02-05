@@ -13,4 +13,8 @@
   <% end %>
 </div>
 
-<%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary btn-xs", style: "margin-left: 15px" %>
+<% if policy(@inventors).create? %>
+  <%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary" %>
+<% else %>
+  You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new inventor
+<% end %>

@@ -10,7 +10,7 @@
     </h3>
     <%= link_to "Delete", material, method: :delete,
     data: { confirm: "Do you really want to delete #{material.name}" },
-    class: "btn btn-danger btn-xs button-right"%>
+    class: "btn btn-danger btn-xs button-right" if policy(material).destroy?%>
   </div>
   <% end %>
 </div>

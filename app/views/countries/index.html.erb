@@ -8,7 +8,7 @@
     </div>
     <%= link_to "Delete", country, method: :delete,
     data: { confirm: "Do you really want to delete #{country.name}" },
-    class: "btn btn-danger btn-xs button-right"%>
+    class: "btn btn-danger btn-xs button-right" if policy(@country).destroy? %>
   </div>
   <% end %>
 </div>
@@ -19,5 +19,5 @@
     <%= f.text_field :name, placeholder: "Enter new country",class: "col-md-10 obligatory" %>
     <%= f.submit class: "col-md-2 btn-primary" %>
     <%= render 'common/errors', object: @country, field_name: :name %>
-  <% end %>
+  <% end if policy(@country).create? %>
 </div>

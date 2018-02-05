@@ -24,7 +24,7 @@ class PuzzlesController < ApplicationController
   end
 
   def create
-    @puzzle = Puzzle.new(puzzle_params)
+    authorize @puzzle = Puzzle.new(puzzle_params)
     if @puzzle.save
       redirect_to @puzzle
     else
@@ -37,6 +37,7 @@ class PuzzlesController < ApplicationController
   end
 
   def update
+    authorize @puzzle
     if @puzzle.update(puzzle_params)
       redirect_to @puzzle
     else
@@ -46,6 +47,7 @@ class PuzzlesController < ApplicationController
   end
 
   def destroy
+    authorize @puzzle
     @puzzle.destroy
     redirect_to puzzles_path
   end

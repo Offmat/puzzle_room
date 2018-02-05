@@ -5,7 +5,7 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @material = Material.new(material_params)
+    authorize @material = Material.new(material_params)
     if @material.save
       redirect_to materials_path
     else
@@ -14,7 +14,7 @@ class MaterialsController < ApplicationController
   end
 
   def destroy
-    @material = Material.find(params[:id])
+    authorize @material = Material.find(params[:id])
     @material.destroy
     redirect_to materials_path
   end
@@ -24,5 +24,4 @@ class MaterialsController < ApplicationController
   def material_params
     params.require(:material).permit(:name)
   end
-
 end

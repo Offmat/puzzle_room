@@ -27,11 +27,11 @@ class ApplicationPolicy
   end
 
   def edit?
-    update?
+    user&.admin
   end
 
   def destroy?
-    false
+    user&.admin
   end
 
   def scope

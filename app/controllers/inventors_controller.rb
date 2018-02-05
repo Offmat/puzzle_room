@@ -14,7 +14,7 @@ class InventorsController < ApplicationController
   end
 
   def create
-    @inventor = Inventor.new(inventor_params)
+    authorize @inventor = Inventor.new(inventor_params)
     if @inventor.save
       redirect_to inventors_path
     else
@@ -24,6 +24,7 @@ class InventorsController < ApplicationController
   end
 
   def update
+    authorize @inventor
     if @inventor.update(inventor_params)
       redirect_to @inventor
     else
@@ -32,7 +33,7 @@ class InventorsController < ApplicationController
   end
 
   def destroy
-    @inventor = Inventor.find(params[:id])
+    authorize @inventor
     @inventor.destroy
     redirect_to inventors_path
   end

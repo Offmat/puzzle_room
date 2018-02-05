@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(company_params)
+    authorize @company = Company.new(company_params)
     if @company.save
       redirect_to companies_path
     else
@@ -24,6 +24,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    authorize @company
     if @company.update(company_params)
       redirect_to @company
     else
@@ -32,7 +33,7 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    @company = Company.find(params[:id])
+    authorize @company
     @company.destroy
     redirect_to companies_path
   end
