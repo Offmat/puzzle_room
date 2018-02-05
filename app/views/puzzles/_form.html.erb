@@ -33,7 +33,7 @@
       </p>
       <p>
         <%= f.label :inventor %>
-        <%= f.collection_select(:inventor_id, @inventors, :id, :name, {include_blank: '--'},
+        <%= f.collection_select(:inventor_id, @inventors, :id, :full_name, {include_blank: '--'},
           {class: "form-control "}) %>
       </p>
       <p>
