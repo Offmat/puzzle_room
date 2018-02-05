@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params.merge(user: current_user))
+    authorize @comment = Comment.new(permitted_attributes(Comment).merge(user: current_user))
     if @comment.save
       redirect_to find_lua(@comment), notice: "Commented"
     else
@@ -8,11 +8,17 @@ class CommentsController < ApplicationController
     end
   end
 
-  private
-
-  def comment_params
-    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
+  def destroy
+    authorize @comment = Comment.find(params[:id])
+    if @comment.comments.any?
+      @comment.update(body: '--comment deleted--')
+    else
+      @comment.destroy
+    end
+    redirect_to find_lua(@comment), alert: "Comment deleted"
   end
+
+  private
 
   def find_lua(object)
     if object.is_a?(Comment)

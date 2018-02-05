@@ -3,7 +3,7 @@
     <%= f.hidden_field :commentable_type, value: model.class.to_s %>
     <p>
       <%= f.label :body, "Add comment" %>
-      <%= f.text_area :body, class: "form-control", rows: "5" %>
+      <%= f.text_area :body, class: "form-control", rows: "3" %>
     </p>
     <%= f.submit %>
   <% end %>

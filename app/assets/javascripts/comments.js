@@ -18,6 +18,22 @@ window.addEventListener( "load", function() {
 
 // show and hide comments list
 window.addEventListener( "load", function() {
+  var button = document.getElementById("button-comments-list-all");
+  button.addEventListener( "click", function() {
+    var list = document.getElementById("comments-list-all");
+    if (this.innerText == "Show comments") {
+      list.setAttribute("style", "display: block");
+      this.innerText = "Hide comments"
+    } else {
+      list.removeAttribute("style");
+      this.innerText = "Show comments"
+    };
+  });
+});
+
+
+// show and hide comments inside comments list
+window.addEventListener( "load", function() {
   var buttons = document.querySelectorAll(".button-comments-list");
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener( "click", function() {

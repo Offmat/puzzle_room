@@ -55,9 +55,9 @@
 
 <h3>Comments</h3>
 <p>
-  <%= render 'comments/list', model: @puzzle  %>
-</p>
-
-<p>
   <%= render 'comments/form', model: @puzzle %>
 </p>
+<button id="button-comments-list-all">Show comments</button>
+<div class="comments-list-hidden" id="comments-list-all">
+  <%= render 'comments/list', model: @puzzle  %>
+</div>
