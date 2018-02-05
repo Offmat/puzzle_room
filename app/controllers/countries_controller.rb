@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
   end
 
   def create
-    authorize @country = Country.new(country_params)
+    authorize @country = Country.new(permitted_attributes(Country))
     if @country.save
       redirect_to countries_path
     else
@@ -18,11 +18,5 @@ class CountriesController < ApplicationController
     authorize @country = Country.find(params[:id])
     @country.destroy
     redirect_to countries_path
-  end
-
-  private
-
-  def country_params
-    params.require(:country).permit(:name)
   end
 end

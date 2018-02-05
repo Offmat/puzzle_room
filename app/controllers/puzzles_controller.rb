@@ -24,7 +24,7 @@ class PuzzlesController < ApplicationController
   end
 
   def create
-    authorize @puzzle = Puzzle.new(puzzle_params)
+    authorize @puzzle = Puzzle.new(permitted_attributes(Puzzle))
     if @puzzle.save
       redirect_to @puzzle
     else
@@ -38,7 +38,7 @@ class PuzzlesController < ApplicationController
 
   def update
     authorize @puzzle
-    if @puzzle.update(puzzle_params)
+    if @puzzle.update(permitted_attributes(@puzzle))
       redirect_to @puzzle
     else
       pre_form
@@ -53,10 +53,6 @@ class PuzzlesController < ApplicationController
   end
 
   private
-
-  def puzzle_params
-    params.require(:puzzle).permit(:name, :description, :level, :company_id, :inventor_id, :design_year, :material_ids => [])
-  end
 
   def pre_form
     @producers = Company.all

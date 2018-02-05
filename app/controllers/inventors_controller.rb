@@ -14,7 +14,7 @@ class InventorsController < ApplicationController
   end
 
   def create
-    authorize @inventor = Inventor.new(inventor_params)
+    authorize @inventor = Inventor.new(permitted_attributes(Inventor))
     if @inventor.save
       redirect_to inventors_path
     else
@@ -25,7 +25,7 @@ class InventorsController < ApplicationController
 
   def update
     authorize @inventor
-    if @inventor.update(inventor_params)
+    if @inventor.update(permitted_attributes(@inventor))
       redirect_to @inventor
     else
       render 'edit'
@@ -39,10 +39,6 @@ class InventorsController < ApplicationController
   end
 
   private
-
-  def inventor_params
-    params.require(:inventor).permit(:name, :surname, :century, :description, :country_id)
-  end
 
   def fetch_countries
     @countries = Country.all

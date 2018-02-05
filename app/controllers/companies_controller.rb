@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :find_company, only: [:show, :edit, :update, :destroy]
-  before_action :fetch_countries, only: [:new, :edit, :create]
+  before_action :fetch_countries, only: [:new, :edit]
 
   def index
     @companies = Company.all
@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    authorize @company = Company.new(company_params)
+    authorize @company = Company.new(permitted_attributes(Company))
     if @company.save
       redirect_to companies_path
     else
@@ -23,9 +23,12 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     authorize @company
-    if @company.update(company_params)
+    if @company.update(permitted_attributes(@company))
       redirect_to @company
     else
       render 'edit'
@@ -39,10 +42,6 @@ class CompaniesController < ApplicationController
   end
 
   private
-
-  def company_params
-    params.require(:company).permit(:name, :description, :country_id)
-  end
 
   def fetch_countries
     @countries = Country.all
