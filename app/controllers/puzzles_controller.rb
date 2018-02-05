@@ -20,7 +20,11 @@ class PuzzlesController < ApplicationController
   end
 
   def new
-    @puzzle = Puzzle.new(permitted_attributes(Puzzle).merge(level: 0))
+    if params[:puzzle]
+      @puzzle = Puzzle.new(permitted_attributes(Puzzle).merge(level: 0))
+    else
+      @puzzle = Puzzle.new(level: 0)
+    end
   end
 
   def create
