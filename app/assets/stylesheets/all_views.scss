@@ -4,6 +4,7 @@ body > .container {
 
 .text-link {
   color: black;
+  text-decoration: underline;
 }
 
 .chopped {
@@ -67,6 +68,13 @@ body > .container {
  margin: 20px 0;
 }
 
+.light-border-show {
+ border-style: solid;
+ border-width: 1px;
+ border-color: grey;
+ margin: 20px 0;
+}
+
 .justify-content-md-center {
  display: flex;
  justify-content: center!important;
@@ -77,20 +85,40 @@ body > .container {
 }
 
 .bottom-right {
-  vertical-align: bottom;
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   right: 15px;
 }
 
 .bottom-left {
-  vertical-align: bottom;
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
   left: 15px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 7px;
 }
 
 .number-input {
   border-radius: 4px;
   margin-right: 10px;
+}
+
+.full-line {
+  width: 100%;
+}
+
+.div-col {
+  background-color: #bfbfbf;
+  padding-top: 15px;
+  border-left: solid;
+  border-right: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+
+.center {
+  text-align: center;
 }

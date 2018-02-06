@@ -1,21 +1,27 @@
 <% model.comments.each do |comment| %>
 <div style="margin-left: 15px">
   <div class="list-group-item">
-    <p><%= comment.user&.nickname || "Guest" %> | <%= time_ago_in_words(comment.created_at) %> ago
-    <p><%= comment.body %></p>
-    <div class="form-hidden form-comment" id="form-comment-<%= comment.id %>">
-      <%= render 'comments/form', model: comment %>
-    </div>
-    <button class="button-comment" id="button-comment-<%= comment.id %>">Add comment</button>
-    <%= link_to "Delete comment", comment, method: :delete,
+    <p>
+      <%= comment.user&.nickname || "Guest" %> | <%= time_ago_in_words(comment.created_at) %> ago
+      <%= link_to "Delete", comment, method: :delete,
       class: "btn btn-danger btn-xs button-right" if policy(comment).destroy? %>
+    </p>
+    <p><%= comment.body %></p>
+    <p>
+      <div class="form-hidden form-comment" id="form-comment-<%= comment.id %>">
+        <%= render 'comments/form', model: comment %>
+      </div>
+    </p>
+    <p>
+      <button class="button-comment btn btn-primary btn-xs" id="button-comment-<%= comment.id %>">Add comment</button>
+    </p>
   </div>
 
   <% if comment.comments.any? %>
+    <button class="button-comments-list btn btn-default btn-xs" id="button-comments-list-<%= comment.id %>">...</button>
     <div class="comments-list-hidden comments-list" id="comments-list-<%= comment.id %>">
       <%= render 'comments/list', model: comment %>
     </div>
-    <button class="button-comments-list" id="button-comments-list-<%= comment.id %>">...</button>
   <% end %>
 
 </div>

@@ -1,9 +1,8 @@
-<%= form_for @possesion, html: {class: "inline"} do |f| %>
+<%= form_for @possesion do |f| %>
   <%= f.hidden_field :puzzle_id, value: @puzzle.id %>
-
+    <div class="center"><%= f.label :status %></div>
     <%= f.collection_radio_buttons(:status, ["Owned", "To buy", "Reset"], :itself, :itself) do |b| %>
-      <%= b.label(class: "radio-inline") {b.radio_button + b.text} %>
+      <p><%= b.label(class: "radio-inline") {b.radio_button + b.text} %></p>
     <% end %>
-
-  <%= f.submit "Click", class: "btn btn-primary btn-xs" %>
+  <%= f.submit "SET", class: "full-line btn btn-xs" %>
 <% end %>

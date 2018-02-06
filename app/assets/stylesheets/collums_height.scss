@@ -2,15 +2,10 @@ div.ch_row {
   display: table;
   margin-left: 0;
   margin-right: 0;
+  width: 100%;
 }
 
-div.ch_first {
-  float: none;
-  display: table-cell;
-  vertical-align: top;
-}
-
-div.ch_second {
+div.ch_col {
   float: none;
   display: table-cell;
   vertical-align: top;
