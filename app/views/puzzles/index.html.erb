@@ -1,12 +1,14 @@
 <h1 class="text-center">Puzzle List!</h1>
-<div class="list-group">
+<div class="list-group row">
   <% @puzzles.each do |puzzle| %>
       <%= render 'index_show', puzzle: puzzle %>
   <% end %>
 </div>
 
-<% if policy(@puzzles).create?%>
-  <%= link_to "Add new puzzle", new_puzzle_path(@pre_set), class: "btn btn-primary" %>
-<% else %>
-  You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new puzzles
-<% end %>
+<p>
+  <% if policy(@puzzles).create?%>
+    <%= link_to "Add new puzzle", new_puzzle_path(@pre_set), class: "btn btn-primary" %>
+  <% else %>
+    You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new puzzles
+  <% end %>
+</p>

@@ -49,7 +49,7 @@
   <div class="col-md-7 description ch-col">
     <% if @puzzle.description %>
       <h2>Description:</h2>
-      <p><%= @puzzle.description %></P>
+      <p><%= simple_format @puzzle.description %></P>
 
     <% end %>
 
