@@ -127,3 +127,14 @@ body > .container {
   margin-left: 0;
   margin-right: 0;
 }
+
+.right {
+  position: absolute;
+  right: 15px;
+  display: inline;
+}
+
+.half {
+  width: 50%;
+  display: inline;
+}

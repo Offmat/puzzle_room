@@ -1,4 +1,4 @@
-<h1 class="text-center">Puzzle List!</h1>
+<h1 class="text-center"><%= @pre_set&.name || "Puzzle" %>  List!</h1>
 <div class="list-group row">
   <% @puzzles.each do |puzzle| %>
       <%= render 'index_show', puzzle: puzzle %>
@@ -6,8 +6,9 @@
 </div>
 
 <p>
+  <% @pre_hash = {puzzle: {(@pre_set.model_name.singular + "_id") => @pre_set.id.to_s}} if @pre_set%>
   <% if policy(@puzzles).create?%>
-    <%= link_to "Add new puzzle", new_puzzle_path(@pre_set), class: "btn btn-primary" %>
+    <%= link_to "Add new puzzle", new_puzzle_path(@pre_hash), class: "btn btn-primary" %>
   <% else %>
     You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new puzzles
   <% end %>

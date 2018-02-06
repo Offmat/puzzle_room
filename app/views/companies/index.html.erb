@@ -4,7 +4,7 @@
     <div class="list-group-item">
       <h1 style="display: inline"><%= company.name.capitalize %></h1>
       <p>
-        <% link_label =  company.puzzles.count.to_s + "puzzles in database" %>
+        <% link_label =  pluralize(company.puzzles.count, 'puzzle') + " in database" %>
         <%= company.country.name %> |
         <%= link_to link_label, puzzles_path(q: {company_id: company.id}), class: "text-link" %>
       </p>

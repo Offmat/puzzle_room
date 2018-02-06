@@ -4,8 +4,9 @@
     <div class="list-group-item">
       <h1 style="display: inline"><%= inventor.full_name.capitalize %></h1>
       <p>
-        <% link_label =  inventor.puzzles.count.to_s + "puzzles in database" %>
-        <%= inventor.country&.name %> |
+        <% link_label =  pluralize(inventor.puzzles.count, 'puzzle') + " in database" %>
+        <%= inventor.country&.name %>
+        <%= "|" if inventor.country %>
         <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), class: "text-link" %>
       </p>
       <p><%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%></p>

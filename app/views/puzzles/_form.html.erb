@@ -40,13 +40,15 @@
         <%= f.label :design_year, "Invented at" %>
         <%= f.number_field :design_year, in: -2000..Date.today.year, class: "form-control" %>
       </p>
-      <p>
+      <p class="half">
         <%= f.label :avatar %>
+
+        <div class="right">
+          <%= f.check_box :remove_avatar %>
+          <%= f.label :remove_avatar %>
+        </div>
+
         <%= f.file_field :avatar, class: "form-control" %>
-      </p>
-      <p>
-        <%= f.label :remove_avatar %>
-        <%= f.check_box :remove_avatar %>
       </p>
       <p>
         <%= f.submit class: "btn btn-primary" %>

@@ -2,8 +2,23 @@
   <div class="col-md-1 ch-col-thumb">
     <%= image_tag puzzle.avatar.thumb %>
   </div>
-  <div class="col-md-11 ch-col">
+  <div class="col-md-4 ch-col">
     <h1 style="display: inline"><%= puzzle.name.capitalize %></h1>
-    <p><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></p>
+    <br>
+    Difficulty level: <b><%= puzzle.level %>/6</b>
+    <br>
+    Rating:
+    <% if puzzle.rates.any? %>
+      <b><%= puzzle.rates.average(:rating).round(2) %>/10</b>
+    <% else %>
+      <b>none</b>
+    <% end %>
   </div>
+
+  <div class="col-md-7 ch-col">
+    <b>Description: </b><%= puzzle.description.truncate_words(30) %>
+  </div>
+  <div class="bottom-right"><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></div>
+
+
 </div>
