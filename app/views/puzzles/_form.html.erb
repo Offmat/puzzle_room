@@ -45,6 +45,10 @@
         <%= f.file_field :avatar, class: "form-control" %>
       </p>
       <p>
+        <%= f.label :remove_avatar %>
+        <%= f.check_box :remove_avatar %>
+      </p>
+      <p>
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "Back", puzzles_path, class: "btn btn-primary" %>
       </p>

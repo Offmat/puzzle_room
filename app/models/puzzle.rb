@@ -1,4 +1,5 @@
 class Puzzle < ApplicationRecord
+  attr_accessor :avatar, :remove_avatar
   mount_uploader :avatar, PuzzleAvatarUploader
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
