@@ -1,27 +1,47 @@
-<h1>
-  <%= @inventor.full_name %>
-  <% if @inventor.century %>
-    <b style="font-size: 70%">|<%= @inventor.century %>century| </b>
+<div class="col-md-12 list-group-item ch-row" style="margin-top: 30px">
+  <div class="col-md-4 ch-col">
+    <h2 class="no-top-m"><%= @inventor.full_name.capitalize %></h2>
+    <% if @inventor.country %>
+      Country: <b><%= @inventor.country.name %></b>
+    <% end %>
+    <br>
+    <%= @inventor.full_name.capitalize %> worked with
+    <% companies = @inventor.puzzles.map { |puzzle| puzzle.producer.name } %>
+    <%= companies.uniq.compact.to_sentence %>
+
+  </div>
+
+  <div class="col-md-8 description ch-col">
+    <h2 class="no-top-m">Description:</h2>
+    <p><%= simple_format @inventor.description %></P>
+  </div>
+  <div class="bottom-right">
+    <%= link_to "Edit", edit_inventor_path(@inventor),
+      class: "btn btn-primary btn-xs" if policy(@inventor).update? %>
+    <%= link_to "Delete", @inventor, method: :delete,
+      data: { confirm: "Are you sure you want do delete #{@inventor.name}?" },
+      class: "btn btn-danger btn-xs" if policy(@inventor).destroy?%>
+    <%= link_to "Back", inventor_path, class: "btn btn-primary btn-xs" %>
+  </div>
+</div>
+
+<% if @inventor.puzzles.present? %>
+<div class="col-md-12 list-group-item ch-row no-border">
+  <h3>There are <%= pluralize(@inventor.puzzles.count, 'puzzle') %> in <%= @inventor.name.capitalize %> database</h3>
+
+  <% @inventor.puzzles.each do |puzzle| %>
+    <div class="inline" style="font-size: 25px">
+      <li><%= puzzle.name.capitalize %>
+        <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
+        <span style="font-size: 15px">
+          <% if puzzle.rates.any? %>
+            Rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |
+          <% end %>
+            Company: <%= puzzle.producer.name %>
+        </span>
+      </li>
+    </div>
   <% end %>
-</h1>
-
-<% if @inventor.description %>
-  <p>
-    Description: <%= @inventor.description %>
-  </p>
+  <%= link_to "Go to puzzle list", puzzles_path(q: {inventor_id: @inventor.id}), class: "btn btn-primary btn-sm" %>
+</div>
 <% end %>
-
-<% if @inventor.country %>
-  <p>
-    Country: <%= @inventor.country.name %>
-  </p>
-<% end %>
-
-
-
-<%= link_to "Edit", edit_inventor_path(@inventor),
-  class: "btn btn-primary btn-xs" if policy(@inventor).update? %>
-<%= link_to "Delete", @inventor, method: :delete,
-  data: { confirm: "Are you sure you want do delete #{@inventor.full_name}?" },
-  class: "btn btn-danger btn-xs" if policy(@inventor).destroy? %>
-<%= link_to "Back", inventors_path, class: "btn btn-primary btn-xs" %>

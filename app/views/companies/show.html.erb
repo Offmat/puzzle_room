@@ -1,22 +1,47 @@
-<h1>
-  <%= @company.name %>
-</h1>
+<div class="col-md-12 list-group-item ch-row" style="margin-top: 30px">
+  <div class="col-md-4 ch-col">
+    <h2 class="no-top-m"><%= @company.name.capitalize %></h2>
+    Country: <b><%= @company.country.name %></b>
+    <br>
+    <%= @company.name.capitalize %> worked with inventors like:
+    <% inventors = @company.puzzles.map { |puzzle| puzzle.inventor&.full_name } %>
+    <%= inventors.uniq.compact.to_sentence %>
 
-<% if @company.description %>
-  <p>
-    Description: <%= @company.description %>
-  </p>
+  </div>
+
+  <div class="col-md-8 description ch-col">
+    <h2 class="no-top-m">Description:</h2>
+    <p><%= simple_format @company.description %></P>
+  </div>
+  <div class="bottom-right">
+    <%= link_to "Edit", edit_company_path(@company),
+      class: "btn btn-primary btn-xs" if policy(@company).update? %>
+    <%= link_to "Delete", @company, method: :delete,
+      data: { confirm: "Are you sure you want do delete #{@company.name}?" },
+      class: "btn btn-danger btn-xs" if policy(@company).destroy?%>
+    <%= link_to "Back", companies_path, class: "btn btn-primary btn-xs" %>
+  </div>
+</div>
+
+<% if @company.puzzles.present? %>
+<div class="col-md-12 list-group-item ch-row no-border">
+  <h3>There are <%= pluralize(@company.puzzles.count, 'puzzle') %> in <%= @company.name.capitalize %> database</h3>
+
+  <% @company.puzzles.each do |puzzle| %>
+    <div class="inline" style="font-size: 25px">
+      <li><%= puzzle.name.capitalize %>
+        <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
+        <span style="font-size: 15px">
+          <% if puzzle.rates.any? %>
+            Rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |
+          <% end %>
+          <% if puzzle.inventor %>
+            Inventor: <%= puzzle.inventor.full_name %>
+          <% end %>
+        </span>
+      </li>
+    </div>
+  <% end %>
+  <%= link_to "Go to puzzle list", puzzles_path(q: {company_id: @company.id}), class: "btn btn-primary btn-sm" %>
+</div>
 <% end %>
-
-<% if @company.country %>
-  <p>
-    Country: <%= @company.country.name %>
-  </p>
-<% end %>
-
-<%= link_to "Edit", edit_company_path(@company),
-  class: "btn btn-primary btn-xs" if policy(@company).update? %>
-<%= link_to "Delete", @company, method: :delete,
-  data: { confirm: "Are you sure you want do delete #{@company.name}?" },
-  class: "btn btn-danger btn-xs" if policy(@company).destroy?%>
-<%= link_to "Back", companies_path, class: "btn btn-primary btn-xs" %>

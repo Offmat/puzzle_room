@@ -1,18 +1,19 @@
-<h1 class="text-center">Inventors List!</h1>
-<div class="list-group">
+<h1>Inventors List!</h1>
+<ul>
   <% @inventors.each do |inventor| %>
-    <div class="list-group-item">
-      <h1 style="display: inline"><%= inventor.full_name.capitalize %></h1>
-      <p>
-        <% link_label =  pluralize(inventor.puzzles.count, 'puzzle') + " in database" %>
-        <%= inventor.country&.name %>
-        <%= "|" if inventor.country %>
-        <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), class: "text-link" %>
-      </p>
-      <p><%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%></p>
-    </div>
+      <div class="inline" style="font-size: 35px">
+        <li><%= inventor.full_name.capitalize %>
+          <%= link_to "Show", inventor, class: "btn btn-primary btn-sm"%>
+          <span style="font-size: 15px">
+            <% link_label =  pluralize(inventor.puzzles.count, 'puzzle') + " in database" %>
+            <%= inventor.country&.name %>
+            <%= "|" if inventor.country %>
+            <%= link_to link_label, puzzles_path(q: {inventor_id: inventor.id}), class: "text-link" %>
+          </span>
+          </li>
+        </div>
   <% end %>
-</div>
+</ul>
 
 <% if policy(@inventors).create? %>
   <%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary" %>

@@ -40,7 +40,7 @@
   </div>
 
   <div class="col-md-1 ch-col div-col">
-    <%= render 'possesions/form' %>
+    <%= render 'possesions/form' if policy(@possesion).create? %>
     <div class="bottom">
       <h3 class="center">Rating</h3>
       <% if @puzzle.rates.any? %>
@@ -55,13 +55,13 @@
   <div class="col-md-7 description ch-col">
     <% if @puzzle.description %>
       <h2>Description:</h2>
-      <p><%= simple_format @puzzle.description %></P>
+      <p><%= simple_format @puzzle.description %></p>
 
     <% end %>
 
     <div class="bottom-left">
       <% if @rate.new_record?%>
-        <%= render 'rates/form' %>
+        <%= render 'rates/form' if policy(@rate).create?%>
       <% else %>
         You rated this puzzle for <%= @rate.rating %>/10
         <%= link_to "Delete rate", @rate, method: :delete,
