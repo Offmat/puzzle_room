@@ -4,12 +4,12 @@ window.addEventListener( "load", function() {
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener( "click", function() {
       var form = document.getElementById("form-comment-" + this.id.slice(15));
-      if (this.innerText == "Add comment") {
+      if (this.innerText == "Comment") {
         form.setAttribute("style", "display: block");
         this.innerText = "Hidde comment form"
       } else {
         form.removeAttribute("style");
-        this.innerText = "Add comment"
+        this.innerText = "Comment"
       };
     });
   };

@@ -1,12 +1,19 @@
-div.ch_row {
+.ch-row {
   display: table;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
 }
 
-div.ch_col {
+.ch-col {
   float: none;
   display: table-cell;
   vertical-align: top;
+}
+
+.ch-col-thumb {
+  float: none;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0;
 }

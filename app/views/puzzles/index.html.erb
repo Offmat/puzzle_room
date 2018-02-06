@@ -1,10 +1,7 @@
 <h1 class="text-center">Puzzle List!</h1>
 <div class="list-group">
   <% @puzzles.each do |puzzle| %>
-    <div class="list-group-item">
-      <h1 style="display: inline"><%= puzzle.name.capitalize %></h1>
-      <p><%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%></p>
-    </div>
+      <%= render 'index_show', puzzle: puzzle %>
   <% end %>
 </div>
 

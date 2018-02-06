@@ -1,6 +1,6 @@
-<div class="row light-border-show ch_row">
+<div class="row light-border-show ch-row" style="min-height: 250px;">
 
-  <div class="col-md-4 ch_col">
+  <div class="col-md-4 ch-col">
     <%= image_tag @puzzle.avatar.avatar_size, class: "avatar" if @puzzle.avatar.present? %>
     <h1><%= @puzzle.name %></h1>
 
@@ -33,7 +33,7 @@
     </p>
   </div>
 
-  <div class="col-md-1 description ch_col div-col">
+  <div class="col-md-1 ch-col div-col">
     <%= render 'possesions/form' %>
     <div class="bottom">
       <h3 class="center">Rating</h3>
@@ -46,7 +46,7 @@
   </div>
 
 
-  <div class="col-md-7 description ch_col">
+  <div class="col-md-7 description ch-col">
     <% if @puzzle.description %>
       <h2>Description:</h2>
       <p><%= @puzzle.description %></P>
@@ -80,9 +80,11 @@
 <p>
   <%= render 'comments/form', model: @puzzle %>
 </p>
-<p>
-  <button class="btn btn-primary btn-sm" id="button-comments-list-all">Show comments</button>
-</p>
+<% if @puzzle.comments.any? %>
+  <p>
+    <button class="btn btn-primary btn-sm" id="button-comments-list-all">Show comments</button>
+  </p>
+<% end %>
 <div class="comments-list-hidden" id="comments-list-all">
   <%= render 'comments/list', model: @puzzle  %>
 </div>
