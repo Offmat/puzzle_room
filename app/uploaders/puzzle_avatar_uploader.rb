@@ -25,6 +25,10 @@ class PuzzleAvatarUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  def default_public_id
+    'http://res.cloudinary.com/offmat/image/upload/c_fit,h_90,w_90/v1517942112/rubiks-cube_vjzk4g.png'
+  end
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -38,7 +42,7 @@ class PuzzleAvatarUploader < CarrierWave::Uploader::Base
   end
 
   version :avatar_size do
-    process resize_to_fit: [350, 350]
+    process resize_to_fit: [300, 300]
   end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

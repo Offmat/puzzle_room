@@ -1,7 +1,13 @@
 <div class="row light-border-show ch-row" style="min-height: 250px;">
 
   <div class="col-md-4 ch-col">
-    <%= image_tag @puzzle.avatar.avatar_size, class: "avatar" if @puzzle.avatar.present? %>
+    <div class="center">
+      <% if @puzzle.avatar.present? %>
+        <%= image_tag @puzzle.avatar.avatar_size, class: "avatar" if @puzzle.avatar.present? %>
+      <% else %>
+        <%= image_tag 'http://res.cloudinary.com/offmat/image/upload/c_fit,h_300,w_300/v1517942112/rubiks-cube_vjzk4g.png', class: "avatar" %>
+      <% end %>
+    </div>
     <h1><%= @puzzle.name %></h1>
 
     <p>
