@@ -4,6 +4,10 @@ module UserHelper
     puzzles.each do |puzzle|
       all_materials += puzzle.materials
     end
-    all_materials = all_materials.group_by(&:name).max_by { |_k, v| v.length }.first
+    if all_materials.any?
+      all_materials = all_materials.group_by(&:name).max_by { |_k, v| v.length }.first
+    else
+      "void"
+    end
   end
 end

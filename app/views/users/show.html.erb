@@ -14,7 +14,7 @@
   </div>
 
   <div class="col-md-8 description ch-col">
-    <p style="font-size: 18px;">
+    <p style="font-size: 17px;">
       <% if @user.possessed_puzzles.any? %>
         Most of puzzles in <%= @user.name || @user.nickname %> possession was invented by
         <%= @user.possessed_puzzles.group_by { |puzzle| puzzle.inventor}.max_by { |k,v| v.length }.first.full_name %>
