@@ -6,11 +6,11 @@ class PuzzlesController < ApplicationController
     @material = Material.find_by(id: params.dig(:q, :material_id))
     @producer = Company.find_by(id: params.dig(:q, :company_id))
     @inventor = Inventor.find_by(id: params.dig(:q, :inventor_id))
-    @puzzles = @material.puzzles.order(:name) if @material
-    @puzzles = @producer.puzzles.order(:name) if @producer
-    @puzzles = @inventor.puzzles.order(:name) if @inventor
+    @puzzles = @material.puzzles.includes(:rates).order(:name) if @material
+    @puzzles = @producer.puzzles.includes(:rates).order(:name) if @producer
+    @puzzles = @inventor.puzzles.includes(:rates).order(:name) if @inventor
     @pre_set = @material || @producer || @inventor
-    @puzzles = Puzzle.all.order(:name) unless @pre_set
+    @puzzles = Puzzle.all.includes(:rates).order(:name) unless @pre_set
   end
 
   def show

@@ -9,7 +9,7 @@
     <br>
     Rating:
     <% if puzzle.rates.any? %>
-      <b><%= puzzle.rates.average(:rating).round(2) %>/10</b>
+      <b><%= (puzzle.rates.inject(0) { |s, n| s + n.rating}/puzzle.rates.length).round(2) %>/10</b>
     <% else %>
       <b>none</b>
     <% end %>
