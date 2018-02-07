@@ -6,7 +6,8 @@
         <%= link_to "Show", user, class: "btn btn-primary btn-sm"%>
         <span style="font-size: 15px">
           <%= user.email %>
-
+          | Owned puzzles: <%= user.possesions.where(status: "Owned")&.count %>
+          | To buy: <%= user.possesions.where(status: "To buy")&.count %>
         </span>
       </li>
     </div>

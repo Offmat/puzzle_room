@@ -1,0 +1,106 @@
+<div class="col-md-12 list-group-item ch-row" style="margin-top: 30px">
+  <div class="col-md-4 ch-col">
+    <h2 class="no-top-m"><%= @user.nickname.titleize %></h2>
+    <% if @user.nickname != @user.email %>
+      email: <b><%= @user.email %></b><br>
+    <% end %>
+    <% if @user.name %>
+      Name: <b><%= @user.name %></b><br>
+    <% end %>
+    <% if @user.surname %>
+      Surname: <b><%= @user.surname %></b>
+    <% end %>
+    <br>
+  </div>
+
+  <div class="col-md-8 description ch-col">
+    <p style="font-size: 18px;">
+      <% if @user.possessed_puzzles.any? %>
+        Most of puzzles in <%= @user.name || @user.nickname %> possession was invented by
+        <%= @user.possessed_puzzles.group_by { |puzzle| puzzle.inventor}.max_by { |k,v| v.length }.first.full_name %>
+        <br>
+        Main producer of <%= @user.name || @user.nickname %> puzzles is
+        <%= @user.possessed_puzzles.group_by { |puzzle| puzzle.producer}.max_by { |k,v| v.length }.first.name %>
+        <br>
+        <%= @user.name || @user.nickname %> favourite material is
+        <%= most_popular_material(@user.possessed_puzzles) %>
+        <br>
+      <% end %>
+      Average rating of <%= @user.name || @user.nickname %> for puzzles is
+      <%= @user.rates.average(:rating) %>
+    </p>
+  </div>
+  <div class="bottom-right">
+    <%= link_to "Edit", edit_user_registration_path,
+      class: "btn btn-primary btn-xs" if policy(@user).update? %>
+    <%= link_to "Back", users_path, class: "btn btn-primary btn-xs" %>
+  </div>
+</div>
+
+
+
+
+
+<div class="col-md-12 list-group-item ch-row no-border">
+  <h3><%= @user.nickname.titleize %> owns <%= pluralize(@user.possesions.where(status: "Owned").count, 'puzzle') %>:</h3>
+  <% @user.possesions.where(status: "Owned").map { |possesion| possesion.puzzle}.each do |puzzle| %>
+    <div class="inline" style="font-size: 20px">
+      <li>
+        <%= puzzle.name %>
+        <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
+        <span style="font-size: 15px">
+          <% if puzzle.rates.any? %>
+            Rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |
+          <% end %>
+          Producer: <%= puzzle.producer.name %>
+          <% if puzzle.inventor %>
+            | Inventor: <%= puzzle.inventor.full_name %>
+          <% end %>
+        </span>
+      </li>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="col-md-12 list-group-item ch-row no-border">
+  <h3><%= @user.nickname.titleize %> wants to buy <%= pluralize(@user.possesions.where(status: "To buy").count, 'puzzle') %>:</h3>
+  <% @user.possesions.where(status: "To buy").map { |possesion| possesion.puzzle}.each do |puzzle| %>
+    <div class="inline" style="font-size: 20px">
+      <li>
+        <%= puzzle.name %>
+        <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
+        <span style="font-size: 15px">
+          <% if puzzle.rates.any? %>
+            Rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |
+          <% end %>
+          Producer: <%= puzzle.producer.name %>
+          <% if puzzle.inventor %>
+            | Inventor: <%= puzzle.inventor.full_name %>
+          <% end %>
+        </span>
+      </li>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="col-md-12 list-group-item ch-row no-border">
+  <h3><%= @user.nickname.titleize %> rated <%= pluralize(@user.puzzles.count, 'puzzle') %>:</h3>
+  <% @user.puzzles.each do |puzzle| %>
+    <div class="inline" style="font-size: 20px">
+      <li>
+        <%= puzzle.name %>
+        <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
+        <span style="font-size: 15px">
+          Average rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |
+          <%= @user.nickname.titleize %> rate: <%= puzzle.rates.where(user: @user).first.rating %>/10 |
+          Producer: <%= puzzle.producer.name %>
+          <% if puzzle.inventor %>
+            | Inventor: <%= puzzle.inventor.full_name %>
+          <% end %>
+        </span>
+      </li>
+    </div>
+  <% end %>
+</div>
