@@ -1,0 +1,14 @@
+<h1>Users:</h1>
+<ul>
+  <% @users.each do |user| %>
+    <div class="inline" style="font-size: 30px">
+      <li><%= user.nickname.capitalize %>
+        <%= link_to "Show", user, class: "btn btn-primary btn-sm"%>
+        <span style="font-size: 15px">
+          <%= user.email %>
+
+        </span>
+      </li>
+    </div>
+  <% end %>
+</ul>

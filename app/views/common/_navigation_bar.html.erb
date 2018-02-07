@@ -5,6 +5,7 @@
     <%= link_to "Inventors", inventors_path, class: page_is_active("inventors")%>
     <%= link_to "Materials", materials_path, class: page_is_active("materials")%>
     <%= link_to "Countries", countries_path, class: page_is_active("countries")%>
+    <%= link_to "Users", users_path, class: page_is_active("users") if policy(User).index?%>
     <div style="float: right">
       <% if current_user %>
         <div class="dropdown_ml">

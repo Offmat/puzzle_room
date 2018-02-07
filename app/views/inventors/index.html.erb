@@ -1,8 +1,8 @@
 <h1>Inventors List!</h1>
 <ul>
   <% @inventors.each do |inventor| %>
-      <div class="inline" style="font-size: 35px">
-        <li><%= inventor.full_name.capitalize %>
+      <div class="inline" style="font-size: 30px">
+        <li><%= inventor.full_name.titleize %>
           <%= link_to "Show", inventor, class: "btn btn-primary btn-sm"%>
           <span style="font-size: 15px">
             <% link_label =  pluralize(inventor.puzzles.count, 'puzzle') + " in database" %>
