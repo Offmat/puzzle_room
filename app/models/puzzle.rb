@@ -1,5 +1,11 @@
 class Puzzle < ApplicationRecord
-  searchkick
+  searchkick word: [:name, :inventor]
+  def search_data
+    {
+      name: name,
+      inventor: inventor&.name
+    }
+  end
   attr_accessor :avatar, :remove_avatar
   mount_uploader :avatar, PuzzleAvatarUploader
 

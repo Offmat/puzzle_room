@@ -10,7 +10,9 @@ class PuzzlesController < ApplicationController
     @puzzles = @producer.puzzles.includes(:rates).order(:name) if @producer
     @puzzles = @inventor.puzzles.includes(:rates).order(:name) if @inventor
     @pre_set = @material || @producer || @inventor
-    @puzzles = Puzzle.all.includes(:rates).order(:name) unless @pre_set
+    if !@pre_set
+      @puzzles = Puzzle.search(params.dig(:puzzle, :q) || '*')
+    end
   end
 
   def show
