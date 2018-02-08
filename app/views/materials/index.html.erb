@@ -7,7 +7,7 @@
       <% if material.puzzles.any? %>
         <% link_label = material.name %>
         <% link_label += " (" + material.puzzles.count.to_s + ")" if material.puzzles.any?%>
-        <%= link_to link_label, puzzles_path(q: {material_id: material.id}), class: "text-link" %>
+        <%= link_to link_label, puzzles_path(ql: {material_id: material.id}), class: "text-link" %>
       <% else %>
           <%= material.name %>
       <% end %>

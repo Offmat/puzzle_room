@@ -1,4 +1,5 @@
 class Puzzle < ApplicationRecord
+  searchkick
   attr_accessor :avatar, :remove_avatar
   mount_uploader :avatar, PuzzleAvatarUploader
 

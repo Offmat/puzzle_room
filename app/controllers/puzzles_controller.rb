@@ -3,9 +3,9 @@ class PuzzlesController < ApplicationController
   before_action :find_puzzle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @material = Material.find_by(id: params.dig(:q, :material_id))
-    @producer = Company.find_by(id: params.dig(:q, :company_id))
-    @inventor = Inventor.find_by(id: params.dig(:q, :inventor_id))
+    @material = Material.find_by(id: params.dig(:ql, :material_id))
+    @producer = Company.find_by(id: params.dig(:ql, :company_id))
+    @inventor = Inventor.find_by(id: params.dig(:ql, :inventor_id))
     @puzzles = @material.puzzles.includes(:rates).order(:name) if @material
     @puzzles = @producer.puzzles.includes(:rates).order(:name) if @producer
     @puzzles = @inventor.puzzles.includes(:rates).order(:name) if @inventor

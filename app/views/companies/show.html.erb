@@ -42,6 +42,6 @@
       </li>
     </div>
   <% end %>
-  <%= link_to "Go to puzzle list", puzzles_path(q: {company_id: @company.id}), class: "btn btn-primary btn-xs" %>
+  <%= link_to "Go to puzzle list", puzzles_path(ql: {company_id: @company.id}), class: "btn btn-primary btn-xs" %>
 </div>
 <% end %>

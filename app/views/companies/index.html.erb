@@ -9,7 +9,7 @@
             <% link_label =  pluralize(company.puzzles.count, 'puzzle') + " in database" %>
             <%= company.country&.name %>
             <%= "|" if company.country %>
-            <%= link_to link_label, puzzles_path(q: {company_id: company.id}), class: "text-link" %>
+            <%= link_to link_label, puzzles_path(ql: {company_id: company.id}), class: "text-link" %>
           </span>
         </li>
       </div>
