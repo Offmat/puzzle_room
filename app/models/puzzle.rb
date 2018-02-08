@@ -9,7 +9,7 @@ class Puzzle < ApplicationRecord
   has_many :makes, dependent: :destroy
   has_many :materials, through: :makes
   belongs_to :inventor, optional: true
-  belongs_to :producer, foreign_key: 'company_id', class_name: 'Company', optional:true
+  belongs_to :producer, foreign_key: 'company_id', class_name: 'Company', optional: true
 
   has_many :possesions, dependent: :destroy
   has_many :owners, through: :possesions, source: :user
