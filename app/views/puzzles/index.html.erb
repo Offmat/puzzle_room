@@ -1,7 +1,8 @@
 <h1 class="text-center"><%= @pre_set&.name || "Puzzle" %>  List!</h1>
 <%= form_for :puzzle, method: :get do |f| %>
   <%= f.label :q, "Search" %>
-  <%= f.text_field :q %>I'm so elastic!
+  <%= f.text_field :q, autofocus: true %>
+  <%= f.submit "Search", class: "btn btn-primary btn-xs" %>
 <% end %>
 <div class="list-group row">
   <% @puzzles.each do |puzzle| %>

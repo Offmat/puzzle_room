@@ -1,9 +1,10 @@
 class Puzzle < ApplicationRecord
-  searchkick word: [:name, :inventor]
+  searchkick word_middle: [:name, :inventor, :producer]
   def search_data
     {
       name: name,
-      inventor: inventor&.name
+      inventor: inventor&.full_name,
+      producer: producer.name
     }
   end
   attr_accessor :avatar, :remove_avatar

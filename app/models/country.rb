@@ -1,5 +1,11 @@
 class Country < ApplicationRecord
-  searchkick
+  searchkick word_middle: [:name]
+  def search_data
+    {
+      name: name,
+      comapnies: companies&.map(&:name)
+    }
+  end
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
   has_many :companies

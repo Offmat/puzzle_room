@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.all.order(:name)
+    @countries = Country.search (params[:q] || '*'), fields: [:name], match: :word_middle, order: :name
     @country = Country.new
   end
 

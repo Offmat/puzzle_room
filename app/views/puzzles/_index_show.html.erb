@@ -5,8 +5,13 @@
   <div class="col-md-4 ch-col">
     <h1 style="display: inline"><%= puzzle.name.capitalize %></h1>
     <br>
-    Difficulty level: <b><%= puzzle.level %>/6</b>
+    <% if puzzle.inventor %>
+      Inventor: <b><%= puzzle.inventor.full_name %></b>
+      <br>
+    <% end %>
+    Producer: <b><%= puzzle.producer.name %></b>
     <br>
+    Difficulty level: <b><%= puzzle.level %>/6 | </b>
     Rating:
     <% if puzzle.rates.any? %>
       <b><%= (puzzle.rates.inject(0) { |s, n| s + n.rating}/puzzle.rates.length).round(2) %>/10</b>
