@@ -2,7 +2,7 @@
     <%= f.hidden_field :commentable_id, value: model.id %>
     <%= f.hidden_field :commentable_type, value: model.class.to_s %>
 
-      <%= f.text_area :body, class: "form-control vertical-resize", rows: "4" %>
+      <%= f.text_area :body, class: "form-control vertical-resize", rows: "2" %>
 
     <%= f.submit class: "full-line btn btn-default"%>
   <% end %>
