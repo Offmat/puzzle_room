@@ -15,7 +15,7 @@
 
 <p>
   <% @pre_hash = {puzzle: {(@pre_set.model_name.singular + "_id") => @pre_set.id.to_s}} if @pre_set%>
-  <% if policy(@puzzles).create?%>
+  <% if policy(Puzzle).create?%>
     <%= link_to "Add new puzzle", new_puzzle_path(@pre_hash), class: "btn btn-primary" %>
   <% else %>
     You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new puzzles

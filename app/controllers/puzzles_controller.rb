@@ -10,12 +10,17 @@ class PuzzlesController < ApplicationController
     @puzzles = @producer.puzzles.includes(:rates).order(:name) if @producer
     @puzzles = @inventor.puzzles.includes(:rates).order(:name) if @inventor
     @pre_set = @material || @producer || @inventor
-    
+
     if !@pre_set
       @q = params.dig(:puzzle, :q) if params.dig(:puzzle, :q) != ''
-      @puzzles = Puzzle.search((@q || '*'),
-        fields: [:name, :inventor, :producer], misspellings: { below: 5 },
-         match: :word_middle, order: :name)
+      if @q
+        @puzzles = Puzzle.search(@q, fields: [:name, :inventor, :producer],
+          misspellings: true).results
+        @puzzles += Puzzle.search(@q, fields: [:name, :inventor, :producer],
+          match: :word_middle, misspellings: false).results
+      else
+        @puzzles = Puzzle.all.order(:name)
+      end
     end
   end
 
