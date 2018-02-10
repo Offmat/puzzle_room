@@ -3,7 +3,6 @@ class Country < ApplicationRecord
   def search_data
     {
       name: name,
-      comapnies: companies&.map(&:name)
     }
   end
   validates :name, presence: true, uniqueness: { case_sensitive: false }
