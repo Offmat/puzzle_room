@@ -17,16 +17,18 @@
     <p style="font-size: 17px;">
       <ul>
         <% if @user.possessed_puzzles.any? %>
-          <li>Most of puzzles in <%= @user.nickname %> possession was invented by
-          <%= @user.possessed_puzzles.group_by { |puzzle| puzzle.inventor}.max_by { |k,v| v.length }.first.full_name %></li>
+          <% if @user.possessed_puzzles.map(&:inventor).any? %>
+            <li>Most of puzzles in <%= @user.nickname %> possession was invented by
+            <%= most_popular_inventor(@user.possessed_puzzles) %></li>
+          <% end %>
           <li>Main producer of <%= @user.nickname %> puzzles is
-          <%= @user.possessed_puzzles.group_by { |puzzle| puzzle.producer}.max_by { |k,v| v.length }.first.name %></li>
+          <%= @user.possessed_puzzles.group_by(&:producer).max_by { |k,v| v.length }.first.name %></li>
           <li><%= @user.nickname %> favourite material is
           <%= most_popular_material(@user.possessed_puzzles) %></li>
         <% end %>
         <% if @user.rates.any? %>
           <li>Average rating of of puzzles by <%= @user.nickname %> is
-          <%= @user.rates.average(:rating) %></li>
+          <%= @user.rates.average(:rating).round(2) %></li>
           <li><%= @user.nickname %> favourite puzzle is
           <%= @user.rates.max_by(&:rating).puzzle.name.capitalize %></li>
         <% end %>
@@ -45,7 +47,8 @@
 
 
 <div class="col-md-12 list-group-item ch-row window-no-padding">
-  <h3 class="window-top"><%= @user.nickname.titleize %> owns <%= pluralize(@user.possesions.where(status: "Owned").count, 'puzzle') %>:</h3>
+  <h3 class="window-top"><%= @user.nickname.titleize %> owns
+    <%= pluralize(@user.possesions.where(status: "Owned").count, 'puzzle') %>:</h3>
   <% @user.possesions.where(status: "Owned").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 18px">
       <li>
@@ -67,7 +70,8 @@
 
 
 <div class="col-md-12 list-group-item ch-row window-no-padding">
-  <h3 class="window-top"><%= @user.nickname.titleize %> wants to buy <%= pluralize(@user.possesions.where(status: "To buy").count, 'puzzle') %>:</h3>
+  <h3 class="window-top"><%= @user.nickname.titleize %> wants to buy
+    <%= pluralize(@user.possesions.where(status: "To buy").count, 'puzzle') %>:</h3>
   <% @user.possesions.where(status: "To buy").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 20px">
       <li>
