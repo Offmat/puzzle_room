@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :companies
   resources :inventors
   resources :materials
-  resources :countries
+  resources :countries, only: [:index, :create, :destroy]
   resources :rates, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :possesions, only: [:create, :update]

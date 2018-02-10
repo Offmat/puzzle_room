@@ -1,8 +1,11 @@
-<h1 class="text-center"><%= @pre_set&.name || "Puzzle" %>  List!</h1>
+<h1 class="text-center"><%= @pre_set&.name ? @pre_set&.name + " puzzles:" : "Puzzles:" %></h1>
 <%= form_for :puzzle, method: :get do |f| %>
   <%= f.label :q, "Search" %>
   <%= f.text_field :q, autofocus: true %>
   <%= f.submit "Search", class: "btn btn-primary btn-xs" %>
+  <% if @q %>
+    Results for: "<%= @q %>"
+  <% end %>
 <% end %>
 <div class="list-group row">
   <% @puzzles.each do |puzzle| %>

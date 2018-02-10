@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.search (params[:q] || '*'), fields: [:name], match: :word_middle, order: :name
+    @q = params[:q] if params[:q] != ''
+    @countries = Country.search (@q || '*'), fields: [:name], match: :word_middle, order: :name
     @country = Country.new
   end
 

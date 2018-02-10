@@ -3,6 +3,9 @@
   <%= label_tag :q, "Search" %>
   <%= text_field_tag :q,'', autofocus: true %>
   <%= submit_tag "Search", class: "btn btn-primary btn-xs" %>
+  <% if @q %>
+    Results for: "<%= @q %>"
+  <% end %>
 <% end %>
 
 <div class="list-group col-md-12 no-padding">
