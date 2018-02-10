@@ -15,9 +15,10 @@ class PuzzlesController < ApplicationController
       @q = params.dig(:puzzle, :q) if params.dig(:puzzle, :q) != ''
       if @q
         @puzzles = Puzzle.search(@q, fields: [:name, :inventor, :producer],
-          misspellings: true).results
+          misspellings: true).results.sort_by(&:name)
         @puzzles += Puzzle.search(@q, fields: [:name, :inventor, :producer],
-          match: :word_middle, misspellings: false).results
+          match: :word_middle, misspellings: false).results.sort_by(&:name)
+        @puzzles.uniq!
       else
         @puzzles = Puzzle.all.order(:name)
       end
