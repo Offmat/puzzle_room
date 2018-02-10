@@ -18,7 +18,7 @@
       <ul>
         <% if @user.possessed_puzzles.any? %>
           <% if @user.possessed_puzzles.map(&:inventor).any? %>
-            <li>Most of puzzles in <%= @user.nickname %> possession was invented by
+            <li>Most puzzles in <%= @user.nickname %> possession was invented by
             <%= most_popular_inventor(@user.possessed_puzzles) %></li>
           <% end %>
           <li>Main producer of <%= @user.nickname %> puzzles is
@@ -27,10 +27,10 @@
           <%= most_popular_material(@user.possessed_puzzles) %></li>
         <% end %>
         <% if @user.rates.any? %>
-          <li>Average rating of of puzzles by <%= @user.nickname %> is
+          <li>Average rating of puzzles by <%= @user.nickname %> is
           <%= @user.rates.average(:rating).round(2) %></li>
           <li><%= @user.nickname %> favourite puzzle is
-          <%= @user.rates.max_by(&:rating).puzzle.name.capitalize %></li>
+          <%= @user.rates.max_by(&:rating).puzzle.name %></li>
         <% end %>
       </ul>
     </p>
@@ -52,7 +52,7 @@
   <% @user.possesions.where(status: "Owned").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 18px">
       <li>
-        <%= puzzle.name.capitalize %>
+        <%= puzzle.name %>
         <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 17px">
           <% if puzzle.rates.any? %>
@@ -75,7 +75,7 @@
   <% @user.possesions.where(status: "To buy").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 20px">
       <li>
-        <%= puzzle.name.capitalize %>
+        <%= puzzle.name %>
         <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 17px">
           <% if puzzle.rates.any? %>
@@ -98,7 +98,7 @@
     <div class="inline" style="font-size: 20px">
       <li>
         <%= puzzle.rates.where(user: @user).first.rating %>/10 |
-        <%= puzzle.name.capitalize %>
+        <%= puzzle.name %>
         <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 17px">
           Rating: <%= puzzle.rates.average(:rating)&.round(2) %>/10 |

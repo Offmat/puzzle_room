@@ -3,7 +3,7 @@
     <%= image_tag puzzle.avatar.thumb %>
   </div>
   <div class="col-md-4 ch-col">
-    <h1 style="display: inline"><%= puzzle.name.capitalize %></h1>
+    <h1 style="display: inline"><%= puzzle.name %></h1>
     <br>
     <% if puzzle.inventor %>
       Inventor: <b><%= puzzle.inventor.full_name %></b>
