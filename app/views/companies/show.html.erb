@@ -3,9 +3,11 @@
     <h2 class="no-top-m"><%= @company.name.capitalize %></h2>
     Country: <b><%= @company.country.name %></b>
     <br>
-    <%= @company.name.capitalize %> worked with inventors like:
-    <% inventors = @company.puzzles.map { |puzzle| puzzle.inventor&.full_name } %>
-    <%= inventors.uniq.compact.to_sentence %>
+    <% if @company.puzzles.map(&:inventor).any? %>
+      <%= @company.name.capitalize %> worked with inventors like:
+      <% inventors = @company.puzzles.map { |puzzle| puzzle.inventor&.full_name } %>
+      <%= inventors.uniq.compact.to_sentence %>
+    <% end %>
 
   </div>
 
