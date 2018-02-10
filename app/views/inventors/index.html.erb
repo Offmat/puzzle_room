@@ -1,9 +1,9 @@
-<h1>Inventors List!</h1>
+<h1>Inventors:</h1>
 <ul>
   <% @inventors.each do |inventor| %>
-      <div class="inline" style="font-size: 30px">
+      <div class="inline" style="font-size: 22px">
         <li><%= inventor.full_name.titleize %>
-          <%= link_to "Show", inventor, class: "btn btn-primary btn-sm"%>
+          <%= link_to "Show", inventor, class: "btn btn-primary btn-xs"%>
           <span style="font-size: 15px">
             <% link_label =  pluralize(inventor.puzzles.count, 'puzzle') + " in database" %>
             <%= inventor.country&.name %>
@@ -16,7 +16,7 @@
 </ul>
 
 <% if policy(@inventors).create? %>
-  <%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary" %>
+  <%= link_to "Add new inventor", new_inventor_path, class: "btn btn-primary btn-sm" %>
 <% else %>
   You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new inventor
 <% end %>

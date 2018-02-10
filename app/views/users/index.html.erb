@@ -1,9 +1,9 @@
 <h1>Users:</h1>
 <ul>
   <% @users.each do |user| %>
-    <div class="inline" style="font-size: 30px">
+    <div class="inline" style="font-size: 22px">
       <li><%= user.nickname.capitalize %>
-        <%= link_to "Show", user, class: "btn btn-primary btn-sm"%>
+        <%= link_to "Show", user, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 15px">
           <%= user.email %>
           | Owned puzzles: <%= user.possesions.where(status: "Owned")&.count %>

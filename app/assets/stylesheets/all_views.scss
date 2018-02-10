@@ -142,3 +142,20 @@ body > .container {
 .no-top-m {
   margin-top: 0;
 }
+
+.window-no-padding {
+  padding: 0;
+  padding-bottom: 15px;
+}
+
+.window-no-padding li {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.window-top {
+  margin-top: 0;
+  background-color: #bfbfbf;
+  width: 100%;
+  padding: 10px 15px;
+}
