@@ -10,6 +10,7 @@
       <% if current_user %>
         <div class="dropdown_ml">
           <span class="topnav-text">logged as: <%= current_user.nickname %></span>
+          <%= link_to "Show my account", current_user, class: "dropdown_ml-content" if policy(User).show?%>
           <%= link_to "Edit account", edit_user_registration_path, class: "dropdown_ml-content" %>
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown_ml-content" %>
         </div>
