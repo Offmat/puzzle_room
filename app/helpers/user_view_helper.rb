@@ -11,7 +11,3 @@ module UserViewHelper
     end
   end
 end
-
- def most_popular_inventor(puzzles)
-   puzzles.where.not(inventor: nil).group_by(&:inventor).max_by { |_k,v| v.length }.first&.full_name
- end

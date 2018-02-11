@@ -1,12 +1,6 @@
 class Puzzle < ApplicationRecord
   searchkick word_middle: [:name, :inventor, :producer]
-  def search_data
-    {
-      name: name,
-      inventor: inventor&.full_name,
-      producer: producer.name
-    }
-  end
+
   attr_accessor :avatar, :remove_avatar
   mount_uploader :avatar, PuzzleAvatarUploader
 
@@ -27,5 +21,18 @@ class Puzzle < ApplicationRecord
 
   has_many :comments, as: :commentable
   has_many :commenters, through: :comments, source: :user
+
+  def search_data
+    {
+      name: name,
+      inventor: inventor&.full_name,
+      producer: producer.name
+    }
+  end
+
+  scope :most_popular_producers, -> { joins(:producer).group("companies.id")
+    .select("count(*) as pcount, companies.name").order("pcount DESC") }
+  scope :most_popular_inventors, -> { joins(:inventor).group("inventors.id")
+    .select("count(*) as icount, inventors.name || ' ' || inventors.surname as full_name").order("icount DESC") }
 
 end

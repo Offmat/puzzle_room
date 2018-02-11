@@ -19,10 +19,11 @@
         <% if @user.possessed_puzzles.any? %>
           <% if @user.possessed_puzzles.map(&:inventor).any? %>
             <li>Most puzzles in <%= @user.nickname %> possession was invented by
-            <%= most_popular_inventor(@user.possessed_puzzles) %></li>
+            <%= @user.possessed_puzzles.most_popular_inventors.first.full_name %></li>
           <% end %>
           <li>Main producer of <%= @user.nickname %> puzzles is
-          <%= @user.possessed_puzzles.group_by(&:producer).max_by { |k,v| v.length }.first.name %></li>
+          <%= @user.possessed_puzzles.most_popular_producers.first.name %></li>
+          </li>
           <li><%= @user.nickname %> favourite material is
           <%= most_popular_material(@user.possessed_puzzles) %></li>
         <% end %>
