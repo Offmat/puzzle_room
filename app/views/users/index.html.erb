@@ -2,7 +2,7 @@
 <ul>
   <% @users.each do |user| %>
     <div class="inline" style="font-size: 22px">
-      <li><%= user.nickname.capitalize %>
+      <li><%= user.nickname %>
         <%= link_to "Show", user, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 15px">
           <%= user.email %>

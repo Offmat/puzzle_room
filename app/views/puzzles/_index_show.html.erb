@@ -3,13 +3,13 @@
     <%= image_tag puzzle.avatar.thumb %>
   </div>
   <div class="col-md-4 ch-col">
-    <h1 style="display: inline"><%= puzzle.name %></h1>
+    <h2 style="display: inline"><%= puzzle.name %></h2>
     <br>
     <% if puzzle.inventor %>
-      Inventor: <b><%= puzzle.inventor.full_name %></b>
+      Inventor: <b><%= link_to puzzle.inventor.full_name, puzzle.inventor, class: "text-link" %></b>
       <br>
     <% end %>
-    Producer: <b><%= puzzle.producer.name %></b>
+    Producer: <b><%= link_to puzzle.producer.name, puzzle.producer, class: "text-link" %></b>
     <br>
     Difficulty level: <b><%= puzzle.level %>/6 | </b>
     Rating:

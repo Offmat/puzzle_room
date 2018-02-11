@@ -1,6 +1,6 @@
 <div class="col-md-12 list-group-item ch-row" style="margin-top: 30px">
   <div class="col-md-4 ch-col">
-    <h2 class="no-top-m"><%= @user.nickname.titleize %></h2>
+    <h2 class="no-top-m"><%= @user.nickname %></h2>
     <% if @user.nickname != @user.email %>
       email: <b><%= @user.email %></b><br>
     <% end %>
@@ -18,20 +18,20 @@
       <ul>
         <% if @user.possessed_puzzles.any? %>
           <% if @user.possessed_puzzles.map(&:inventor).any? %>
-            <li>Most puzzles in <%= @user.nickname %> possession was invented by
+            <li>Most puzzles possessed by <%= @user.nickname %> was invented by
             <%= @user.possessed_puzzles.most_popular_inventors.first.full_name %></li>
           <% end %>
-          <li>Main producer of <%= @user.nickname %> puzzles is
+          <li>Main producer of puzzles possessed by<%= @user.nickname %> is
           <%= @user.possessed_puzzles.most_popular_producers.first.name %></li>
           </li>
-          <li><%= @user.nickname %> favourite material is
+          <li>Favourite material of <%= @user.nickname %> is
           <%= most_popular_material(@user.possessed_puzzles) %></li>
         <% end %>
         <% if @user.rates.any? %>
-          <li>Average rating of puzzles by <%= @user.nickname %> is
+          <li>Average rating of puzzles made by <%= @user.nickname %> is
           <%= @user.rates.average(:rating).round(2) %></li>
-          <li><%= @user.nickname %> favourite puzzle is
-          <%= @user.rates.max_by(&:rating).puzzle.name %></li>
+          <li>Highest rate mady by <%= @user.nickname %> is <%= @user.rates.max_by(&:rating).rating %>/10
+          for <%= @user.rates.max_by(&:rating).puzzle.name %></li>
         <% end %>
       </ul>
     </p>
@@ -48,7 +48,7 @@
 
 
 <div class="col-md-12 list-group-item ch-row window-no-padding">
-  <h3 class="window-top"><%= @user.nickname.titleize %> owns
+  <h3 class="window-top"><%= @user.nickname %> owns
     <%= pluralize(@user.possesions.where(status: "Owned").count, 'puzzle') %>:</h3>
   <% @user.possesions.where(status: "Owned").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 18px">
@@ -71,7 +71,7 @@
 
 
 <div class="col-md-12 list-group-item ch-row window-no-padding">
-  <h3 class="window-top"><%= @user.nickname.titleize %> wants to buy
+  <h3 class="window-top"><%= @user.nickname %> wants to buy
     <%= pluralize(@user.possesions.where(status: "To buy").count, 'puzzle') %>:</h3>
   <% @user.possesions.where(status: "To buy").map { |possesion| possesion.puzzle}.each do |puzzle| %>
     <div class="inline" style="font-size: 20px">
@@ -94,7 +94,7 @@
 
 
 <div class="col-md-12 list-group-item ch-row window-no-padding">
-  <h3 class="window-top"><%= @user.nickname.titleize %> rated <%= pluralize(@user.puzzles.count, 'puzzle') %>:</h3>
+  <h3 class="window-top"><%= @user.nickname %> rated <%= pluralize(@user.puzzles.count, 'puzzle') %>:</h3>
   <% @user.puzzles.each do |puzzle| %>
     <div class="inline" style="font-size: 20px">
       <li>

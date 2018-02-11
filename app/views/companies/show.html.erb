@@ -1,10 +1,10 @@
 <div class="col-md-12 list-group-item ch-row" style="margin-top: 30px">
   <div class="col-md-4 ch-col">
-    <h2 class="no-top-m"><%= @company.name.capitalize %></h2>
+    <h2 class="no-top-m"><%= @com %></h2>
     Country: <b><%= @company.country.name %></b>
     <br>
     <% if @company.puzzles.map(&:inventor).any? %>
-      <%= @company.name.capitalize %> worked with inventors like:
+      <%= @company.name %> worked with inventors like:
       <% inventors = @company.puzzles.map { |puzzle| puzzle.inventor&.full_name } %>
       <%= inventors.uniq.compact.to_sentence %>
     <% end %>
@@ -27,11 +27,11 @@
 
 <% if @company.puzzles.present? %>
 <div class="col-md-12 list-group-item ch-row no-border">
-  <h3>There are <%= pluralize(@company.puzzles.count, 'puzzle') %> in <%= @company.name.capitalize %> database</h3>
+  <h3>There are <%= pluralize(@company.puzzles.count, 'puzzle') %> in <%= @company.name %> database</h3>
 
   <% @company.puzzles.each do |puzzle| %>
     <div class="inline" style="font-size: 25px">
-      <li><%= puzzle.name.capitalize %>
+      <li><%= puzzle.name %>
         <%= link_to "Show", puzzle, class: "btn btn-primary btn-xs"%>
         <span style="font-size: 15px">
           <% if puzzle.rates.any? %>

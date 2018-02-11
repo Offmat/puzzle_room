@@ -8,7 +8,7 @@
         <%= image_tag 'http://res.cloudinary.com/offmat/image/upload/c_fit,h_300,w_300/v1517942112/rubiks-cube_vjzk4g.png', class: "avatar" %>
       <% end %>
     </div>
-    <h1><%= @puzzle.name %></h1>
+    <h2><%= @puzzle.name %></h2>
 
     <p>
       Difficulty level: <b><%= @puzzle.level %>/6</b>
@@ -20,7 +20,7 @@
 
     <p>
       <% if @puzzle.materials.any? %>
-        Materials: <%= @puzzle.materials.map(&:name).join(', ').titleize %>
+        Materials: <%= @puzzle.materials.map(&:name).join(', ') %>
       <% end %>
     </p>
 

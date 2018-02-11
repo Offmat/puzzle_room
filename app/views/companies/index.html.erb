@@ -3,7 +3,7 @@
 <ul>
   <% @companies.each do |company| %>
       <div class="inline" style="font-size: 22px">
-        <li><%= company.name.capitalize %>
+        <li><%= company.name %>
           <%= link_to "Show", company, class: "btn btn-primary btn-xs"%>
           <span style="font-size: 15px">
             <% link_label =  pluralize(company.puzzles.count, 'puzzle') + " in database" %>
@@ -17,7 +17,7 @@
 </ul>
 
 <% if policy(@companies).create?%>
-  <%= link_to "Add new company", new_company_path, class: "btn btn-primary btn-sm" %>
+  <%= link_to "Add new company", new_company_path, class: "btn btn-primary btn-xs" %>
 <% else %>
   You have to be <%= link_to "logged in", user_session_path, class: "text-link" %> to add new company
 <% end %>
